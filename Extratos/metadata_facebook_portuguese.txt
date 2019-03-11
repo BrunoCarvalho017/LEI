@@ -1,0 +1,93 @@
+Metadata Generic Schema:
+
+---facebook_extraction_portuguese_1
+
+CMC Source Text type:   journalistic
+Language:        portuguese
+Date Posted:     2019-01-25
+Date Extraction: 2019-01-29
+Title  type='fbPost':      Eu não quero ser mártir. Eu quero viver afirmou Jean Wyllys em entrevista
+URL type='fbPost':        https://www.facebook.com/search/str/Eu+n%C3%A3o+quero+ser+m%C3%A1rtir.+Eu+quero+viver+afirmou+Jean+Wyllys+em+entrevista/keywords_blended_posts?esd=eyJlc2lkIjoiUzpfSTQ2OTk3NDUxMDQ3NDoxMDE2MTQ4OTY5NjU2NTQ3NSIsInBzaWQiOnsiNDY5OTc0NTEwNDc0OjEwMTYxNDg5Njk2NTY1NDc1IjoiVXpwZlNUUTJPVGszTkRVeE1EUTNORG94TURFMk1UUTRPVFk1TmpVMk5UUTNOUT09In0sImNyY3QiOiJ0ZXh0IiwiY3NpZCI6IjM2YzU1MTJjNTA2NWJmOTQwNDU5Yzk5Y2RiMDNiMGM4In0%3D
+Setting:         (personal) interview
+Type of online platform/channel: Facebook
+Sociolinguistic variables:       Sexual Identity
+Keywords/Expressions of Comments:   homosexual
+Extracted file type: tab
+Source type: text
+Comments permanently open: yes
+
+Owner: Correio Manhã
+Number Comments on Facebook:
+Number Shares on Facebook:
+Newspaper text  --- LIGAR AO metadata do newspaper
+Likes:
+
+
+
+---facebook_extraction_portuguese_2
+---Correio Manhã
+CMC Source Text type:   journalistic
+Language:        portuguese
+Date Posted:     2019-01-15
+Date Extraction: 2019-01-16
+Title  type='fbPost':      Mulher acredita ser a pessoa mais modificada do mundo
+URL type='fbPost':        https://www.facebook.com/search/str/Mulher+acredita+ser+a+pessoa+mais+modificada+do+mundo/keywords_blended_posts?epa=FILTERS&filters=eyJycF9hdXRob3IiOiJ7XCJuYW1lXCI6XCJhdXRob3JcIixcImFyZ3NcIjpcIjQ2OTk3NDUxMDQ3NFwifSJ9
+Setting:         transgender
+Type of online platform/channel: Facebook
+Sociolinguistic variables:       Sexual Identity
+Keywords/Expressions of Comments:
+Extracted file type: tab
+Source type: text
+Comments permanently open: yes
+
+Owner: Correio Manhã
+Number Comments on Facebook:
+Number Shares on Facebook:
+Newspaper text  --- LIGAR AO metadata do newspaper
+Likes:
+
+
+
+---facebook_extraction_portuguese_3
+
+CMC Source Text type:   journalistic
+Language:        portuguese
+Date Posted:     2019-01-08
+Date Extraction: 2019-02-07
+Title  type='fbPost':      É às 06h20; não te esqueças  ó Marcelo. Obrigadinha”
+URL type='fbPost':        https://www.facebook.com/jornalsol/posts/10156972922797351?comment_tracking=%7B%22tn%22%3A%22O%22%7D
+Setting:
+Type of online platform/channel: Facebook
+Sociolinguistic variables: Sexism
+Keywords/Expressions of Comments:
+Extracted file type: tab
+Source type: text
+Comments permanently open: yes
+
+Owner: Jornal SOL
+Number Comments on Facebook:
+Number Shares on Facebook:
+Newspaper text  --- LIGAR AO metadata do newspaper
+Likes:
+
+
+---facebook_extraction_portuguese_4
+CMC Source Text type:   journalistic
+Language:        portuguese
+Date Posted:     2019-01-15
+Date Extraction: 2019-01-16
+Title  type='fbPost':
+URL type='fbPost':
+Setting:
+Type of online platform/channel: Facebook
+Sociolinguistic variables:
+Keywords/Expressions of Comments:
+Extracted file type: tab
+Source type: text
+Comments permanently open: yes
+
+Owner:
+Number Comments on Facebook:
+Number Shares on Facebook:
+Newspaper text  --- LIGAR AO metadata do newspaper
+Likes:

@@ -1,0 +1,104 @@
+[
+	//Tipo de preconceito->sexismo
+	{
+		"type_prejuicide": "Sexism",
+		"Sociolinguistic variables" : {
+			"Gender": ["Keywords"]
+		}
+	},
+
+	//Tipo de preconceito->idade
+	{
+		"type_prejuicide": "Ageism",
+		"Sociolinguistic variables" : {
+			"Over65s": ["Keywords"],
+			"Youngsters": ["Keywords"]
+		}
+
+	},
+
+	//Tipo de preconceito->racismo
+	{
+		"type_prejuicide": "Racism",
+		"Sociolinguistic variables" : {
+			"Aboriginal": ["Keywords"],
+			"Arab": ["Keywords"],
+			"Asian_East": ["Keywords"],
+			"Asian_South": ["Keywords"],
+			"Black": ["Keywords"],
+			"Jewish": ["Keywords"],
+			"Native_Ametican": ["Keywords"],
+			"Roma": ["Keywords"],
+			"White": ["Keywords"],
+		}
+	},
+
+	//Tipo de preconceito->nacionalismo
+	{
+		"type_prejuicide": "Nationalism",
+		"Sociolinguistic variables" : {
+			"General": ["Keywords"],
+			"Anti_Brazilian": ["Keywords"],
+			"Antia_European": ["Keywords"],
+			"Anti_Eastern_European": ["Keywords"],
+			"Anti_South_European": ["Keywords"],
+			"Anti_American": ["Keywords"],
+			"Anti_British": ["Keywords"],
+			"Anti_Chinese": ["Keywords"],
+			"Anti_French": ["Keywords"],
+			"Anti_German": ["Keywords"],
+			"Anti_Hispanic": ["Keywords"],
+			"Anti_Irish": ["Keywords"],
+			"Anti_Italian": ["Keywords"],
+			"Anti_Japanese": ["Keywords"],
+			"Anti_Mexican": ["Keywords"],
+			"Anti_Portuguese": ["Keywords"]
+		}
+	},
+
+	//Tipo de preconceito->classismo
+	{
+		"type_prejuicide": "Classism",
+		"Sociolinguistic variables" : {
+			"Social_Class": ["Keywords"],
+		}
+
+	},
+
+	//Tipo de preconceito->intolerante a...
+	{
+		"type_prejuicide": "Intolerance_to",
+		"Sociolinguistic variables" : {
+			"Sexual Identity": ["Keywords"],
+			"Religious Identity" : {
+				"Roman_Catholic": ["Keywords"],
+				"Christian": ["Keywords"],
+				"Protestant": ["Keywords"],
+				"Jewish": ["Keywords"],
+				"Muslim": ["Keywords"],
+				"Sikh": ["Keywords"]
+			},
+			"Physical_Identity":{
+				"Physical_Features":["Keywords"],
+				"Physical_Mental":["Keywords"],
+				"Behavioural_addictions":["Keywords"],
+			},
+			"Ideological_Political_Identity":["Keywords"]
+		}
+
+	}
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+

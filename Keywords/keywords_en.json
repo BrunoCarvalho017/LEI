@@ -1,0 +1,105 @@
+[
+	//Tipo de preconceito->sexismo
+	{
+		"type_prejudice": "Sexism",
+		"Sociolinguistic variables" : {
+			"Gender": ["Male chauvinism","chauvinist","gender","sexual","sexism","misogynyous","misogynnist","misogyne","patriarchy","woman","chick","dame","cock tease","dumb blonde","bechy","make me a sandwich","hag","crone","witch","minger","bitch","promiscuous","slut","tart","whore","feminazi"]
+		}
+	},
+
+	//Tipo de preconceito->idade
+	{
+		"type_prejudice": "Ageism",
+		"Sociolinguistic variables" : {
+
+			"Over65s": ["old","elder","elderly","senior","OAP","pensioner","bed-blocker","wrinklies"],
+			"Youngsters": ["brat","half-pint","insect","lightweight","morsel","nobody","nonentity","nothing","twerp","whippersnapper","zero","zilch"]
+		}
+
+	},
+
+	//Tipo de preconceito->racismo
+	{
+		"type_prejudice": "Racism",
+		"Sociolinguistic variables" : {
+			"Aboriginal": ["abo","abbo","boong","bong","bung","coon","gin","lubra"],
+			"Arab": ["camel jockey","dune coon sand nigger","hajji","hadji","haji"],
+			"Asian_East": ["buddhahead","oriental","pancake face","pancake","yellow","yellowman","yellowwoman","zip","zipperhead","banana"],
+			"Asian_South": ["ABCD","curry muncher","dot","dothead","paki","brownie"],
+			"Black": ["african","ape","black","bluegum","boogie","bootlips","buck","burrhead","burr-head","burr head","colored","coloured","coon","crow","darky","darkey","darkie","eggplant","eight ball","fuzzy","groid","jigaboo","jiggabo","jijjiboo","zigabo","jig","jigg","jiggy","jigga","jim crow","jungle bunny","monkey","mooncricket","negro","nig-nog","nigger","nigra","nigga","niggah","nigguh","porch monkey","powder burn","quashie","sambo","schvartse","schwartze","shiner","sooty","spade","spearchucker","spook","teapot","toad","thicklips"],
+			"Jewish": [],
+			"Native_Ametican": ["indian","injun","prairie","nigger","red","redskin","timber nigger","squaw","apple"],
+			"Roma": ["gypsy","gyppo","gypo","gyppie","gyppy","gipp","gippo","traveller"],
+			"White": ["cracker","gammon","hick","honky","honkey","honkie","medigan","amedigan","ofay","peckerwood","redneck","trailer trash","whitey","white trash"]
+		}
+	},
+
+	//Tipo de preconceito->nacionalismo
+	{
+		"type_prejudice": "Nationalism",
+		"Sociolinguistic variables" : {
+			"General": ["alien","refugee","migrant","immigrant","WOP","engineers and doctors"],
+			"Anti_Brazilian": [],
+			"Antia_European": ["brexit","remainers","remoaners","brexiteer","quitter","leaver","EUSSR"],
+			"Anti_Eastern_European": ["polish plumber"],
+			"Anti_South_European": ["PIGS","dago"],
+			"Anti_American": ["gringo","merkin","seppo","septic","yankee and yank"],
+			"Anti_British": ["limey","pom","pommy","tan"],
+			"Anti_Chinese": ["ABC","chinaman","ching-chong","chink","coolie","oriental","slant","slant-eye","slope","slopehead","slopy","slopey","sloper","ting tong","yellow","yellowman","yellowwoman","sideways","vagina","pussy","cooter"],
+			"Anti_French": ["frog","froggy","frogeater"],
+			"Anti_German": ["boche","cabbage eater","fritz","herman","herm","hun","jerry","gerry","kraut","marmeladinger","squarehead"],
+			"Anti_Hispanic": ["spic","spick","spik","spig","spigotty","brownie","wetback"],
+			"Anti_Irish": ["bog-trotter","bog irish","chav","fenian","mick","paddy","pikey","piky","piker","dogan","dogun"],
+			"Anti_Italian": ["dago","eyetie","ginzo","goombah","greaser","greaseball","guido","guinea","hike","wop"],
+			"Anti_Japanese": ["gook","jap","nip","oriental","yellow","yellowman","yellowwoman"],
+			"Anti_Mexican": ["beaner","greaseball","greaser","tacohead"],
+			"Anti_Portuguese": ["pork-and-cheese","portagee"]
+		}
+	},
+
+	//Tipo de preconceito->classismo
+	{
+		"type_prejudice": "Classism",
+		"Sociolinguistic variables" : {
+			"Social_Class": ["classim","aporophobia","bumpkin","country bumpkin","hillbilly","hillbilly bumpkin","pikey","pikie","redneck","trailer trash","white trash","yokel","chav","cheesy","common","coarse","tacky","unrefined","bum","vagrant","havenot","social climber","nouveau riche"]
+		}
+
+	},
+
+	//Tipo de preconceito->intolerante a...
+	{
+		"type_prejudice": "Intolerance_to",
+		"Sociolinguistic variables" : {
+			"Sexual Identity": ["homophobia","gay","lesbian","queer","drag queen","LGBT","tranny","transexual","transgender","transition","homophobic","homoerotic","homosexual","beta male","effeminate","fag","faggot","fruit","fruitcake","girlie man","neck beard","pansy","sissy","twink","battle-axe","butch woman","dike","tomboy"],
+			"Religious Identity" : {
+				"Roman_Catholic": ["creeping jesus","left-footer","mackerel snapper","mick","papist","taig"],
+				"Christian": ["fundie","bible thumper","bible beater","god botherer"],
+				"Protestant": ["bible basher","holly roler","orangie","snout","prod","proddy dog","proddywoddy","proddywhoddy","russellite","spike","soup taker","WASP"],
+				"Jewish": ["abbie","abe","abie","christ-killer","ikey","ike","iky","kike","heeb","hebe","hymie","ikey-mo","ikeymo","mocky","moky","moxy","mockey","mockie","mocky","oven dodger","sheeny","shylock","yid"],
+				"Muslim": ["asslifter","carpet kisser","goatfucker","kebab","koran basher","koranimal","mussie","quran thumper","koran thumper","hajji","haji","hodgie","mudslum","muslimtard","musloid","muzrat","pisslamist","terrorist","raghead","towelhead"],
+				"Sikh": ["raghead","towelhead"]
+			},
+			"Physical_Identity":{
+				"Physical_Features":["fat","fatso","fatty","butterball","chubby","lardass","lump","obese","porker","thin","bag-of-bones","beanpole","beanstalk","bony","skinny","skin-and-bones","scrawny","scraggy","twiggy","double eyes","double chin","bald"],
+				"Physical_Mental":["ableism","eugenics","blind","deaf","dumb","stutterer","dwarf","hunchback","lame","limp","midget","cripple","disabled","freak","handicapped","wheelchair bound","bonkers","crazy","dim","feeble-minded","lunatic","loony","mental","mong","mongoloid","nutter","psycho","retard","spazz","spazzie","spastic","weird","weirdo","window licker"],
+				"Behavioural_addictions":["junkie","druggie","drug addict"]
+			},
+			"Ideological_Political_Identity":["communist","commie","imperialist","nazi","looney left","red"]
+		}
+
+	}
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
