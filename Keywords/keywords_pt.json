@@ -1,5 +1,4 @@
 [
-	//Tipo de preconceito->sexismo
 	{
 		"type_prejudice": "Sexism",
 		"Sociolinguistic variables" : {
@@ -7,18 +6,16 @@
 		}
 	},
 
-	//Tipo de preconceito->idade
 	{
 		"type_prejudice": "Ageism",
-		"Sociolinguistic variables" : {
+		"Sociolinguistic_variables" : {
 
-			"Over65s": ["Velho",""Velha","Velhote","Velhadas","Idoso","Idosa","Reformado","Reformada","Cota","Caquético","Senil","Acabado"],
+			"Over65s": ["Velho","Velha","Velhote","Velhadas","Idoso","Idosa","Reformado","Reformada","Cota","Caquético","Senil","Acabado"],
 			"Youngsters": ["Canalha","Canalhada","Dez reis de gente","Geração à rasca","Meia leca","Miudagem","Miúdo","Pingente","Piolho","Pirralho","Pulga","Franganote","Javardo","Totó"]
 		}
 
 	},
 
-	//Tipo de preconceito->racismo
 	{
 		"type_prejudice": "Racism",
 		"Sociolinguistic variables" : {
@@ -34,7 +31,6 @@
 		}
 	},
 
-	//Tipo de preconceito->nacionalismo
 	{
 		"type_prejudice": "Nationalism",
 		"Sociolinguistic variables" : {
@@ -57,7 +53,6 @@
 		}
 	},
 
-	//Tipo de preconceito->classismo
 	{
 		"type_prejudice": "Classism",
 		"Sociolinguistic variables" : {
@@ -66,7 +61,6 @@
 
 	},
 
-	//Tipo de preconceito->intolerante a...
 	{
 		"type_prejudice": "Intolerance_to",
 		"Sociolinguistic variables" : {

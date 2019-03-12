@@ -9,7 +9,7 @@ def toJson(file):
 	idf_counter= open(file)
 	counter= csv.reader(idf_counter,dialect='excel-tab')
 	tam= sum(1 for row in counter)
-	
+
 	#percorrer todas as rows e extrair a informação
 	idf= open(file)
 	spamreader= csv.reader(idf,dialect='excel-tab')
@@ -22,6 +22,10 @@ def toJson(file):
 		i+=1
 	print(']')
 
+def normalizeAspas(info):
+	str = info.replace('\"','\'')
+	return str
+
 def printInfo(info,flag,tam,infoCabe):
 	args=len(info)
 	i=0
@@ -32,8 +36,12 @@ def printInfo(info,flag,tam,infoCabe):
 			#if(representInt(info[i])):
 				#print('\t\t"%s" : %d ,' % (infoCabe[i],int(info[i])))
 			#else:
-			print('\t\t"%s" : "%s",' % (infoCabe[i],info[i]))
-			i+=1
+			if(i!=args-1):
+				print('\t\t"%s" : "%s",' % (infoCabe[i],normalizeAspas(info[i])))
+				i+=1
+			else:
+				print('\t\t"%s" : "%s"' % (infoCabe[i],normalizeAspas(info[i])))
+				i+=1
 	#Se for o ultimo elemento a ser processado nao contem ','
 		if flag!=tam-1:
 			print('\t},\n')
@@ -48,5 +56,5 @@ def representInt(info):
 		else:
 			return False
 
-toJson("../Extratos/teste.tab")
+toJson("../Extratos/facebook_extraction_portuguese_2.tab")
 

@@ -34,7 +34,7 @@ def printInfo(info,flag,tam):
 		print('\t\t"comment_published" : "%s" ,' % info[9])
 		print('\t\t"comment_like_count" :%d ,' % int(info[10]))
 		print('\t\t"attachment_type" : "%s" ,' % info[11])
-		print('\t\t"attachment_url" : "%s" ,' % info[12])
+		print('\t\t"attachment_url" : "%s" ' % info[12])
 		if(flag!=tam-1):
 			print('\t},\n')
 		else:
