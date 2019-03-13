@@ -1,4 +1,5 @@
-#!/usr/local/bin/python3
+##!/usr/local/bin/python3
+#!/usr/bin/python3
 
 import json
 import re
@@ -39,21 +40,41 @@ def loadKeywords(file):
 				arrayKeywords=values
 	return arrayKeywords
 
-def check(comentario,keywords):
+def checkNcount(comentario,keywords):
+	ocurrencias = []
 	for keyword in keywords:
-			if(len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))>0):
+			nOcur = len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))
+			if(nOcur > 0):
+				value = (keyword, nOcur)
+				ocurrencias.append(value)
 				print(comentario.commentMessage)
+	return ocurrencias
 
 
 def analise(comentarios,keywords):
+	ocurrencias = []
+	arrayComens = []
 	for comentario in comentarios:
-		check(comentario,keywords)
+		ocurrencias = checkNcount(comentario,keywords)
+		if ocurrencias:
+			comentario.ocurrencias = ocurrencias
+			arrayComens.append(comentario)
+	return arrayComens
 
+def printOcurrencias(comentarios):
+	str = ""
+	for comentario in comentarios:
+		str += comentario.comment_id + " --> "
+		for value in comentario.ocurrencias:
+			str += "{}".format(value)
+		str += "\n"
+	
+	print(str)		
 
 def main():
-	comentarios=loadInfoExtract("../Extratos/result2.json")
-	keywords= loadKeywords("../Keywords/keywords_pt.json")
-	analise(comentarios,keywords)
-
-
+	comentarios = loadInfoExtract("../Extratos/result2.json")
+	keywords = loadKeywords("../Keywords/keywords_pt.json")
+	estatistica = analise(comentarios,keywords)
+	printOcurrencias(estatistica)
+	
 main()
