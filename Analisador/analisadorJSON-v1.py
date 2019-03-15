@@ -29,10 +29,30 @@ def loadInfoExtract(file):
 	return arrayComments
 
 
-def loadKeywords(file):
-	arrayKeywords = []
+def loadInfo(file):
 	info = open(file).read()
 	inventory = json.loads(info)
+	return inventory
+
+def parseValues(objeto):
+	lista = []
+	for key in objeto.keys():
+		if type(objeto[key]) is list:
+			lista += objeto[key]
+		else:
+			lista += parseValues(objeto[key])		
+	return lista
+
+def loadKeywordsRec(inventory,prejudice):
+	arrayKeywords = []
+	for items in inventory:
+		if (items['type_prejudice'] == prejudice):
+			arrayKeywords = parseValues(items['Sociolinguistic variables'])
+	
+	return arrayKeywords
+
+def loadKeywords(inventory):
+	arrayKeywords = []
 	i=0
 	for items in inventory:
 		if (items['type_prejudice']=='Sexism'):
@@ -72,8 +92,9 @@ def printOcurrencias(comentarios):
 	print(str)		
 
 def main():
+	inventory = loadInfo("../Keywords/keywords_pt.json")
 	comentarios = loadInfoExtract("../Extratos/result2.json")
-	keywords = loadKeywords("../Keywords/keywords_pt.json")
+	keywords = loadKeywordsRec(inventory,"Racism")
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica)
 	
