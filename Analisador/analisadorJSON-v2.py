@@ -19,21 +19,39 @@ class Comentario:
 		newObject.ocurrencias=ocur
 
 
-def loadInfoExtract(file):
+def loadInfoExtract(inventory,com_id,com_txt,com_user):
 	arrayComments = []
-	info = open(file).read()
-	inventory = json.loads(info)
 	i=0
 	for item in inventory:
-		arrayComments.append(Comentario(item['id'],item['commentText'],item['user'],[]))
+		arrayComments.append(Comentario(item[com_id],item[com_txt],item[com_user],[]))
 		i+=1
 	return arrayComments
 
-
-def loadKeywords(file,keyword):
-	arrayKeywords = []
+def loadInfo(file):
 	info = open(file).read()
 	inventory = json.loads(info)
+	return inventory
+
+def parseValues(objeto):
+	lista = []
+	for key in objeto.keys():
+		if type(objeto[key]) is list:
+			lista += objeto[key]
+		else:
+			lista += parseValues(objeto[key])		
+	return lista
+
+def loadKeywordsRec(inventory,prejudice):
+	arrayKeywords = []
+	for items in inventory:
+		if (items['type_prejudice'] == prejudice):
+			arrayKeywords = parseValues(items['Sociolinguistic variables'])
+	
+	return arrayKeywords
+
+
+def loadKeywords(inventory,keyword):
+	arrayKeywords = []
 	i=0
 	for items in inventory:
 		if(items['type_prejudice']==keyword):	
@@ -117,10 +135,13 @@ def main():
 			break
 		else: 
 			print("Unknown Option Selected!") 
-	comentarios = loadInfoExtract("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
-	keywords = loadKeywords("../Keywords/keywords_pt.json",keyword)
-	#estatistica = analise(comentarios,keywords)
-	#printOcurrencias(estatistica)
+
+	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
+	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
+	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
+	keywords = loadKeywordsRec(kw_inventory,keyword)
+	estatistica = analise(comentarios,keywords)
+	printOcurrencias(estatistica)
 
 	
 main()
