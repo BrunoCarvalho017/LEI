@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 ##!/usr/bin/python3
 
-import json
+import json,sys
 import re
 
 
@@ -12,9 +12,10 @@ import re
 		#newObject.ocurrencias=ocur
 
 class Comentario:
-	def __init__(newObject,comment_id,commentMessage,ocur):
+	def __init__(newObject,comment_id,commentMessage,user,ocur):
 		newObject.comment_id=comment_id
 		newObject.commentMessage=commentMessage
+		newObject.user=user
 		newObject.ocurrencias=ocur
 
 
@@ -24,19 +25,20 @@ def loadInfoExtract(file):
 	inventory = json.loads(info)
 	i=0
 	for item in inventory:
-		arrayComments.append(Comentario(item['comment_id'],item['comment_message'],[]))
+		arrayComments.append(Comentario(item['id'],item['commentText'],item['user'],[]))
 		i+=1
 	return arrayComments
 
 
-def loadKeywords(file):
+def loadKeywords(file,keyword):
 	arrayKeywords = []
 	info = open(file).read()
 	inventory = json.loads(info)
 	i=0
 	for items in inventory:
-		if (items['type_prejudice']=='Sexism'):
+		if(items['type_prejudice']==keyword):	
 			for values in items['Sociolinguistic variables'].values():
+				print(values)
 				arrayKeywords=values
 	return arrayKeywords
 
@@ -69,12 +71,56 @@ def printOcurrencias(comentarios):
 			str += "{}".format(value)
 		str += "\n"
 	
-	print(str)		
+	print(str)	
 
 def main():
-	comentarios = loadInfoExtract("../Extratos/result2.json")
-	keywords = loadKeywords("../Keywords/keywords_pt.json")
-	estatistica = analise(comentarios,keywords)
-	printOcurrencias(estatistica)
+	menu = {}
+	menu['1']="Sexism" 
+	menu['2']="Ageism"
+	menu['3']="Racism"
+	menu['4']="Nationalism"
+	menu['5']="Classism"
+	menu['6']="Intolerance_to"
+	menu['7']="Exit"
+	while True: 
+		options=menu.keys()
+		for entry in options: 
+			print (entry, menu[entry])
+
+		selection=input("Please Select:") 
+		if selection =='1':
+			keyword= menu[selection] 
+			print("Sexism Selected")
+			break 
+		elif selection == '2':
+			keyword= menu[selection] 
+			print("Ageism Selected")
+			break
+		elif selection == '3':
+			keyword= menu[selection]
+			print("Racism Selected")
+			break
+		elif selection == '4':
+			keyword= menu[selection]
+			print("Nationalism Selected")
+			break
+		elif selection == '5':
+			keyword= menu[selection]
+			print("Classism Selected")
+			break
+		elif selection == '6':
+			keyword= menu[selection]
+			print("Intolerance_to Selected")
+			break
+		elif selection == '7':
+			keyword= "none" 
+			break
+		else: 
+			print("Unknown Option Selected!") 
+	comentarios = loadInfoExtract("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
+	keywords = loadKeywords("../Keywords/keywords_pt.json",keyword)
+	#estatistica = analise(comentarios,keywords)
+	#printOcurrencias(estatistica)
+
 	
 main()
