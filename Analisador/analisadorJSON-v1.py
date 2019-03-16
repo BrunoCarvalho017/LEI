@@ -18,13 +18,13 @@ class Comentario:
 		newObject.ocurrencias=ocur
 
 
-def loadInfoExtract(file):
+def loadInfoExtract(file,com_id,com_msg):
 	arrayComments = []
 	info = open(file).read()
 	inventory = json.loads(info)
 	i=0
 	for item in inventory:
-		arrayComments.append(Comentario(item['comment_id'],item['comment_message'],[]))
+		arrayComments.append(Comentario(item[com_id],item[com_msg],[]))
 		i+=1
 	return arrayComments
 
@@ -93,8 +93,9 @@ def printOcurrencias(comentarios):
 
 def main():
 	inventory = loadInfo("../Keywords/keywords_pt.json")
-	comentarios = loadInfoExtract("../Extratos/result2.json")
-	keywords = loadKeywordsRec(inventory,"Racism")
+	#comentarios = loadInfoExtract("../Extratos/result2.json",'comment_id','comment_message')
+	comentarios = loadInfoExtract("../Extratos/youtube/Youtube_extraction_portuguese_1.json",'id','commentText')
+	keywords = loadKeywordsRec(inventory,"Ageism")
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica)
 	
