@@ -63,11 +63,14 @@ def loadKeywords(inventory,keyword):
 def checkNcount(comentario,keywords):
 	ocurrencias = []
 	for keyword in keywords:
+			#contabilizar o numero de occurencias da keyword dentro do comentario
 			nOcur = len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))
 			if(nOcur > 0):
-				value = (keyword, nOcur)
+				#contabilizar o numero total de palavras
+				wordcount = len(comentario.commentMessage.split())
+				value = (keyword, nOcur, wordcount)
 				ocurrencias.append(value)
-				print(comentario.commentMessage)
+				#print(comentario.commentMessage)
 	return ocurrencias
 
 
@@ -107,31 +110,31 @@ def main():
 
 		selection=input("Please Select:") 
 		if selection =='1':
-			keyword= menu[selection] 
+			prejudice = menu[selection] 
 			print("Sexism Selected")
 			break 
 		elif selection == '2':
-			keyword= menu[selection] 
+			prejudice = menu[selection] 
 			print("Ageism Selected")
 			break
 		elif selection == '3':
-			keyword= menu[selection]
+			prejudice = menu[selection]
 			print("Racism Selected")
 			break
 		elif selection == '4':
-			keyword= menu[selection]
+			prejudice = menu[selection]
 			print("Nationalism Selected")
 			break
 		elif selection == '5':
-			keyword= menu[selection]
+			prejudice = menu[selection]
 			print("Classism Selected")
 			break
 		elif selection == '6':
-			keyword= menu[selection]
+			prejudice = menu[selection]
 			print("Intolerance_to Selected")
 			break
 		elif selection == '7':
-			keyword= "none" 
+			prejudice = "none" 
 			break
 		else: 
 			print("Unknown Option Selected!") 
@@ -139,7 +142,7 @@ def main():
 	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
 	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
-	keywords = loadKeywordsRec(kw_inventory,keyword)
+	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica)
 
