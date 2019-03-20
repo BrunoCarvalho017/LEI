@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 ##!/usr/bin/python3
 
-import json,sys
+import json,sys,xlsxwriter
 import re
 
 
@@ -103,7 +103,42 @@ def printOcurrencias(comentarios):
 			str += "{}".format(value)
 		str += "\n"
 	
-	print(str)	
+	print(str)
+
+def excelWriter(prejudice,comentarios):
+	tam= len(comentarios)+3
+	final=0
+	final_id=0
+	tam_str=str(tam)
+	currente = 4
+	workbook = xlsxwriter.Workbook('test.xlsx')
+	worksheet = workbook.add_worksheet('Estatistica')
+
+	bold = workbook.add_format({'bold': True})
+	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
+	pre = workbook.add_format({'bold': True,'font_color':'black','font_size':'10','valign': 'vcenter','align': 'center','border_color':'black'})
+	worksheet.write('B3', 'Prejudice',princ)
+	worksheet.write('C3', 'Comentario',princ)
+	worksheet.write('D3', 'ID',princ)
+	worksheet.write('E3', 'Frequencia',princ)
+	worksheet.write('H3', 'Total',princ)
+	worksheet.merge_range('B4:B'+tam_str,prejudice,pre)
+	for comentario in comentarios:
+		curr_str=str(currente)
+		maior_mm= len(comentario.commentMessage)
+		maior_id= len(comentario.comment_id)
+		if(maior_mm>final):
+			final=maior_mm
+		if(maior_id>final_id):
+			final_id=maior_id
+		worksheet.write('C'+curr_str, comentario.commentMessage)
+		worksheet.write('D'+curr_str,comentario.comment_id)
+		currente+=1
+	worksheet.set_column('B:D',len('prejudice..'))
+	worksheet.set_column('C:D',final)
+	worksheet.set_column('D:E',final_id)
+	workbook.close()
+	print('terminei')	
 
 def main():
 	menu = {}
@@ -150,15 +185,14 @@ def main():
 		else: 
 			print("Unknown Option Selected!") 
 
-	kw_inventory = loadInfo("LEI/Keywords/keywords_pt.json")
-	com_inventory = loadInfo("LEI/Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
+	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
+	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica[1])
-
-	print()
 	printcomentsOcur(estatistica)
+	excelWriter(prejudice,estatistica)
 
 	
 main()
