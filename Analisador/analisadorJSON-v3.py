@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 ##!/usr/bin/python3
 
-import json,sys,xlsxwriter
+import json,sys#,xlsxwriter
 import re
 
 
@@ -92,7 +92,7 @@ def printcomentsOcur(estatistica):
 	for entry in estatistica[1]:
 		postOcur.extend(entry.ocurrencias)
 	my_set = {x[0] for x in postOcur}
-	postOcur = [(i,sum(x[1] for x in postOcur if x[0] == i),estatistica[0]) for i in my_set]
+	postOcur = [(i,sum(x[1] for x in postOcur if x[0] == i)) for i in my_set]
 	print(postOcur)
 
 def printOcurrencias(comentarios):
@@ -192,7 +192,7 @@ def main():
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica[1])
 	printcomentsOcur(estatistica)
-	excelWriter(prejudice,estatistica)
+	#excelWriter(prejudice,estatistica)
 
 	
 main()
