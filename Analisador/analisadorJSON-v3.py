@@ -1,7 +1,7 @@
 #!/usr/local/bin/python3
 ##!/usr/bin/python3
 
-import json,sys#,xlsxwriter
+import json,sys,xlsxwriter
 import re
 
 
@@ -87,13 +87,13 @@ def analise(comentarios,keywords):
 	value = (totalWordCount,arraycoments)
 	return value
 
-def printcomentsOcur(estatistica):
+def getcomentsOcur(estatistica):
 	postOcur = []
 	for entry in estatistica[1]:
 		postOcur.extend(entry.ocurrencias)
 	my_set = {x[0] for x in postOcur}
 	postOcur = [(i,sum(x[1] for x in postOcur if x[0] == i)) for i in my_set]
-	print(postOcur)
+	return postOcur
 
 def printOcurrencias(comentarios):
 	str = ""
@@ -105,8 +105,8 @@ def printOcurrencias(comentarios):
 	
 	print(str)
 
-def excelWriter(prejudice,comentarios):
-	tam= len(comentarios)+3
+def excelWriter(prejudice,comentarios,nComents,totais):
+	tam= len(comentarios[1])+3
 	final=0
 	final_id=0
 	tam_str=str(tam)
@@ -123,7 +123,7 @@ def excelWriter(prejudice,comentarios):
 	worksheet.write('E3', 'Frequencia',princ)
 	worksheet.write('H3', 'Total',princ)
 	worksheet.merge_range('B4:B'+tam_str,prejudice,pre)
-	for comentario in comentarios:
+	for comentario in comentarios[1]:
 		curr_str=str(currente)
 		maior_mm= len(comentario.commentMessage)
 		maior_id= len(comentario.comment_id)
@@ -134,9 +134,23 @@ def excelWriter(prejudice,comentarios):
 		worksheet.write('C'+curr_str, comentario.commentMessage)
 		worksheet.write('D'+curr_str,comentario.comment_id)
 		currente+=1
+		worksheet.write('E'+curr_str,str(comentario.ocurrencias))
 	worksheet.set_column('B:D',len('prejudice..'))
 	worksheet.set_column('C:D',final)
 	worksheet.set_column('D:E',final_id)
+
+	worksheet.write('J3','Ocurrencias',princ)
+	worksheet.set_column('J:G',20)
+
+	counter=4
+	for info in totais:
+		str_counter=str(counter)
+		worksheet.write('J'+str_counter,str(info[0])+' ----> '+str(info[1]))
+		counter+=1
+
+
+	worksheet.merge_range('H4:H'+tam_str,str(len(comentarios[1]))+'/'+str(nComents),pre)
+
 	workbook.close()
 	print('terminei')	
 
@@ -186,13 +200,15 @@ def main():
 			print("Unknown Option Selected!") 
 
 	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
-	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
+	com_inventory = loadInfo("../Extratos/youtube/fase2/Youtube_extraction_portuguese_22.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica[1])
-	printcomentsOcur(estatistica)
-	#excelWriter(prejudice,estatistica)
+	totais=getcomentsOcur(estatistica)
+
+	nComents=len(comentarios)
+	excelWriter(prejudice,estatistica,nComents,totais)
 
 	
 main()
