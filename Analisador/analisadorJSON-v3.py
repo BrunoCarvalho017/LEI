@@ -1,4 +1,5 @@
-#!/usr/local/bin/python3
+#!/usr/bin/python3
+##!/usr/local/bin/python3
 ##!/usr/bin/python3
 
 import json,sys,xlsxwriter
@@ -200,7 +201,7 @@ def main():
 			print("Unknown Option Selected!") 
 
 	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
-	com_inventory = loadInfo("../Extratos/youtube/fase2/Youtube_extraction_portuguese_22.json")
+	com_inventory = loadInfo("../Extratos/youtube/fase2/Youtube_extraction_portuguese_1.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	estatistica = analise(comentarios,keywords)
