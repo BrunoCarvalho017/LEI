@@ -140,7 +140,7 @@ def excelWriter(prejudice,comentarios,nComents,totais):
 	worksheet.set_column('C:D',final)
 	worksheet.set_column('D:E',final_id)
 
-	worksheet.write('J3','Ocurrencias',princ)
+	worksheet.write('J3','Ocorrencias',princ)
 	worksheet.set_column('J:G',20)
 
 	counter=4
@@ -201,7 +201,7 @@ def main():
 			print("Unknown Option Selected!") 
 
 	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
-	com_inventory = loadInfo("../Extratos/youtube/fase2/Youtube_extraction_portuguese_1.json")
+	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	estatistica = analise(comentarios,keywords)
