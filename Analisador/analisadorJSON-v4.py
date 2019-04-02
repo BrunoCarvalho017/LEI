@@ -134,6 +134,7 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 	currente = 4
 
 	worksheet = workbook.add_worksheet(worksheetName)
+	print(workbook.sheetnames)
 	#Parte estatica
 	bold = workbook.add_format({'bold': True})
 	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
@@ -184,7 +185,6 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 
 	worksheet.merge_range('H4:H'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)
 
-	workbook.close()
 	print('terminei')	
 
 def main():
@@ -289,6 +289,8 @@ def main():
 				excelWriter(prejsComents, nComents, totais, f"cenas{counter}", workbook)
 				counter += 1
 
+	#fechar o workbook
+	workbook.close()
 
 
 
