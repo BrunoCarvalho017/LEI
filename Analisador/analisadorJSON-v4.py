@@ -1,5 +1,5 @@
-#!/usr/local/bin/python3
-##!/usr/bin/python3
+#!/usr/bin/python3
+##!/usr/local/bin/python3
 
 import json,sys,xlsxwriter,os,glob
 import re
@@ -264,7 +264,7 @@ def main():
 		else:
 			print("Unknown Option Selected!")
 
-	dirs = os.listdir(f"/Users/brunocarvalho/Documents/LEI/Extratos/{selecao}")
+	dirs = os.listdir("/Users/brunocarvalho/Documents/LEI/Extratos/"+selecao)
 	print(dirs)
 	for dir in dirs:
 		print(dir)
