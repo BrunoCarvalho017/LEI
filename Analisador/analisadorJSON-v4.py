@@ -1,5 +1,5 @@
-#!/usr/bin/python3
-##!/usr/local/bin/python3
+#!/usr/local/bin/python3
+##!/usr/bin/python3
 
 import json,sys,xlsxwriter,os,glob
 import re
@@ -125,15 +125,14 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
-def excelWriter(prejsComents,nComents,totais,worksheetName):
+def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 	#variaveis
 	#tam= len(comentarios[1])+3
 	total_linhas = 0
 	final=0
 	final_id=0
 	currente = 4
-	#criação
-	workbook = xlsxwriter.Workbook('test.xlsx')
+
 	worksheet = workbook.add_worksheet(worksheetName)
 	#Parte estatica
 	bold = workbook.add_format({'bold': True})
@@ -274,11 +273,14 @@ def main():
 	counter=0
 	print('Analisando todos os ficheiros.....')
 
+	# criação do xslx
+	workbook = xlsxwriter.Workbook('resultado.xlsx')
+
 	##Fazer análise para todos os ficheiros que estão na diretoria escolhida
 	##Aqui narcos!
 	for ficheiro in mylist:
+		print(ficheiro)
 		com_inventory = loadInfo(ficheiro)
-		print(com_inventory)
 		comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 		keywords = loadKeywordsRec(kw_inventory,prejudice)
 		prejsComents = analise(comentarios,keywords)
@@ -286,7 +288,7 @@ def main():
 		totais=getPostOcur(prejsComents)
 		nComents=len(comentarios)
 
-		excelWriter(prejsComents,nComents,totais,f"cenas{counter}")
+		excelWriter(prejsComents,nComents,totais,f"cenas{counter}",workbook)
 		counter+=1
 
 	
