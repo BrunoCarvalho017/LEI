@@ -84,6 +84,7 @@ def analise(comentarios,keywords):
 		if ocurrencias:
 			comentario.ocurrencias = ocurrencias
 			arraycoments.append(comentario)
+	#Array de comentarios, em que cada um possui um array de ocurrencias 
 	value = (totalWordCount,arraycoments)
 	return value
 
