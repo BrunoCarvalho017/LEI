@@ -1,8 +1,7 @@
-#!/usr/bin/python3
-##!/usr/local/bin/python3
+#!/usr/local/bin/python3
+##!/usr/bin/python3
 
-
-import json,sys,xlsxwriter
+import json,sys,xlsxwriter,os,glob
 import re
 
 
@@ -50,7 +49,7 @@ def loadKeywordsRecAux(inventory,prejudice):
 	return value
 
 def loadKeywordsRec(inventory,choice):
-	prejudices = ["Sexism","Ageism","Sexism","Racism","Nationalism","Classism","Intolerance_to"] 
+	prejudices = ["Sexism","Ageism","Racism","Nationalism","Classism","Intolerance_to"]
 	arrayKW = []
 	if (choice == 6):
 		for prejudice in prejudices:
@@ -126,7 +125,7 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
-def excelWriter(prejsComents,nComents,totais):
+def excelWriter(prejsComents,nComents,totais,worksheetName):
 	#variaveis
 	#tam= len(comentarios[1])+3
 	total_linhas = 0
@@ -135,7 +134,7 @@ def excelWriter(prejsComents,nComents,totais):
 	currente = 4
 	#criação
 	workbook = xlsxwriter.Workbook('test.xlsx')
-	worksheet = workbook.add_worksheet('Estatistica')
+	worksheet = workbook.add_worksheet(worksheetName)
 	#Parte estatica
 	bold = workbook.add_format({'bold': True})
 	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
@@ -148,12 +147,16 @@ def excelWriter(prejsComents,nComents,totais):
 
 	#Parte dinamica
 	for prejComents in prejsComents:
-		tam = len(prejComents[1])
-		tam_str = str(tam)
-		currente_str = str(currente)
-		total_linhas += tam
-		worksheet.merge_range('B'+currente_str+':B'+tam_str,prejComents[0],pre)
+		tamC = len(prejComents[1])
+		tam = tamC + currente
+		tam_str = str(tam-1)
+		curr_str = str(currente)
+		if(tamC>1):
+			worksheet.merge_range('B'+curr_str+':B'+tam_str,prejComents[0],pre)
+		else:
+			worksheet.write('B'+curr_str,prejComents[0],pre)
 		for comentario in prejComents[1]:
+			total_linhas += 1
 			curr_str = str(currente)
 			maior_mm = len(comentario.commentMessage)
 			maior_id = len(comentario.comment_id)
@@ -180,7 +183,7 @@ def excelWriter(prejsComents,nComents,totais):
 		counter+=1
 
 
-	worksheet.merge_range('H4:H'+tam_str,str(total_linhas)+'/'+str(nComents),pre)
+	worksheet.merge_range('H4:H'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)
 
 	workbook.close()
 	print('terminei')	
@@ -236,14 +239,55 @@ def main():
 			print("Unknown Option Selected!") 
 
 	kw_inventory = loadInfo("../Keywords/keywords_pt.json")
-	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
-	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
-	keywords = loadKeywordsRec(kw_inventory,prejudice)
-	prejsComents = analise(comentarios,keywords)
-	printOcurrencias(prejsComents)
-	totais=getPostOcur(prejsComents)
-	nComents=len(comentarios)
-	excelWriter(prejsComents,nComents,totais)
+
+	menu2 = {}
+	menu2['1'] = "Facebook"
+	menu2['2'] = "Youtube"
+	menu2['3'] = "Exit"
+	while True:
+		options = menu2.keys()
+		for entry in options:
+			print(entry, menu2[entry])
+
+		selection = input("Please Select:")
+		if selection == '1':
+			selecao = "facebook"
+			print("Facebook Selected")
+			break
+		elif selection == '2':
+			selecao = "youtube"
+			print("Youtube Selected")
+			break
+		elif selection == '3':
+			sys.exit(0)
+			break
+		else:
+			print("Unknown Option Selected!")
+
+	dirs = os.listdir(f"/Users/brunocarvalho/Documents/LEI/Extratos/{selecao}")
+	print(dirs)
+	for dir in dirs:
+		print(dir)
+		if dir != '.DS_Store':
+			mylist = [f for f in glob.glob(f"../Extratos/{selecao}/{dir}/*.json")]
+
+	counter=0
+	print('Analisando todos os ficheiros.....')
+
+	##Fazer análise para todos os ficheiros que estão na diretoria escolhida
+	##Aqui narcos!
+	for ficheiro in mylist:
+		com_inventory = loadInfo(ficheiro)
+		print(com_inventory)
+		comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
+		keywords = loadKeywordsRec(kw_inventory,prejudice)
+		prejsComents = analise(comentarios,keywords)
+		printOcurrencias(prejsComents)
+		totais=getPostOcur(prejsComents)
+		nComents=len(comentarios)
+
+		excelWriter(prejsComents,nComents,totais,f"cenas{counter}")
+		counter+=1
 
 	
 main()
