@@ -103,10 +103,11 @@ def analise(comentarios, keywords):
 		prejsComents.append(analiseAux(comentarios,kw[1],kw[0]))
 	return prejsComents
 
-def getcomentsOcur(estatistica):
+def getPostOcur(prejsComents):
 	postOcur = []
-	for entry in estatistica[1]:
-		postOcur.extend(entry.ocurrencias)
+	for prejComents in prejsComents:
+		for comentario in prejComents[1]:
+			postOcur.extend(comentario.ocurrencias)
 	my_set = {x[0] for x in postOcur}
 	postOcur = [(i,sum(x[1] for x in postOcur if x[0] == i)) for i in my_set]
 	return postOcur
@@ -125,15 +126,17 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
-def excelWriter(prejudice,comentarios,nComents,totais):
-	tam= len(comentarios[1])+3
+def excelWriter(prejsComents,nComents,totais):
+	#variaveis
+	#tam= len(comentarios[1])+3
+	total_linhas = 0
 	final=0
 	final_id=0
-	tam_str=str(tam)
 	currente = 4
+	#criação
 	workbook = xlsxwriter.Workbook('test.xlsx')
 	worksheet = workbook.add_worksheet('Estatistica')
-
+	#Parte estatica
 	bold = workbook.add_format({'bold': True})
 	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
 	pre = workbook.add_format({'bold': True,'font_color':'black','font_size':'10','valign': 'vcenter','align': 'center','border_color':'black'})
@@ -142,19 +145,27 @@ def excelWriter(prejudice,comentarios,nComents,totais):
 	worksheet.write('D3', 'ID',princ)
 	worksheet.write('E3', 'Frequencia',princ)
 	worksheet.write('H3', 'Total',princ)
-	worksheet.merge_range('B4:B'+tam_str,prejudice,pre)
-	for comentario in comentarios[1]:
-		curr_str=str(currente)
-		maior_mm= len(comentario.commentMessage)
-		maior_id= len(comentario.comment_id)
-		if(maior_mm>final):
-			final=maior_mm
-		if(maior_id>final_id):
-			final_id=maior_id
-		worksheet.write('C'+curr_str, comentario.commentMessage)
-		worksheet.write('D'+curr_str,comentario.comment_id)
-		currente+=1
-		worksheet.write('E'+curr_str,str(comentario.ocurrencias))
+
+	#Parte dinamica
+	for prejComents in prejsComents:
+		tam = len(prejComents[1])
+		tam_str = str(tam)
+		currente_str = str(currente)
+		total_linhas += tam
+		worksheet.merge_range('B'+currente_str+':B'+tam_str,prejComents[0],pre)
+		for comentario in prejComents[1]:
+			curr_str = str(currente)
+			maior_mm = len(comentario.commentMessage)
+			maior_id = len(comentario.comment_id)
+			if(maior_mm > final):
+				final = maior_mm
+			if(maior_id > final_id):
+				final_id = maior_id
+			worksheet.write('C'+curr_str, comentario.commentMessage)
+			worksheet.write('D'+curr_str,comentario.comment_id)
+			currente+=1
+			worksheet.write('E'+curr_str,str(comentario.ocurrencias))
+
 	worksheet.set_column('B:D',len('prejudice..'))
 	worksheet.set_column('C:D',final)
 	worksheet.set_column('D:E',final_id)
@@ -169,7 +180,7 @@ def excelWriter(prejudice,comentarios,nComents,totais):
 		counter+=1
 
 
-	worksheet.merge_range('H4:H'+tam_str,str(len(comentarios[1]))+'/'+str(nComents),pre)
+	worksheet.merge_range('H4:H'+tam_str,str(total_linhas)+'/'+str(nComents),pre)
 
 	workbook.close()
 	print('terminei')	
@@ -230,10 +241,9 @@ def main():
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
 	prejsComents = analise(comentarios,keywords)
 	printOcurrencias(prejsComents)
-	#totais=getcomentsOcur(estatistica)
-
-	#nComents=len(comentarios)
-	#excelWriter(prejudice,estatistica,nComents,totais)
+	totais=getPostOcur(prejsComents)
+	nComents=len(comentarios)
+	excelWriter(prejsComents,nComents,totais)
 
 	
 main()
