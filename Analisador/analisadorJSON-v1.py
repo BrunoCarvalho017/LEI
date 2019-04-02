@@ -93,10 +93,11 @@ def printOcurrencias(comentarios):
 
 def main():
 	inventory = loadInfo("../Keywords/keywords_pt.json")
+	print(inventory)
 	#comentarios = loadInfoExtract("../Extratos/result2.json",'comment_id','comment_message')
 	comentarios = loadInfoExtract("../Extratos/youtube/Youtube_extraction_portuguese_1.json",'id','commentText')
-	keywords = loadKeywordsRec(inventory,"Ageism")
-	estatistica = analise(comentarios,keywords)
-	printOcurrencias(estatistica)
+	#keywords = loadKeywordsRec(inventory)
+	#estatistica = analise(comentarios,keywords)
+	#printOcurrencias(estatistica)
 	
 main()

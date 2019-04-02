@@ -162,7 +162,8 @@ def main():
 	menu['4']="Nationalism"
 	menu['5']="Classism"
 	menu['6']="Intolerance_to"
-	menu['7']="Exit"
+	menu['7'] = "All"
+	menu['8']="Exit"
 	while True: 
 		options=menu.keys()
 		for entry in options: 
@@ -194,6 +195,10 @@ def main():
 			print("Intolerance_to Selected")
 			break
 		elif selection == '7':
+			prejudice = menu[selection]
+			print("All selected")
+			break
+		elif selection == '8':
 			prejudice = "none" 
 			break
 		else: 
@@ -203,12 +208,14 @@ def main():
 	com_inventory = loadInfo("../Extratos/youtube/fase1/Youtube_extraction_portuguese_1.json")
 	comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
 	keywords = loadKeywordsRec(kw_inventory,prejudice)
+
+
 	estatistica = analise(comentarios,keywords)
 	printOcurrencias(estatistica[1])
 	totais=getcomentsOcur(estatistica)
 
-	nComents=len(comentarios)
-	excelWriter(prejudice,estatistica,nComents,totais)
+	#nComents=len(comentarios)
+	#excelWriter(prejudice,estatistica,nComents,totais)
 
 	
 main()
