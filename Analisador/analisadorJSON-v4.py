@@ -263,33 +263,34 @@ def main():
 		else:
 			print("Unknown Option Selected!")
 
+	# criação do xslx
+	workbook = xlsxwriter.Workbook('resultado.xlsx')
+
 	dirs = os.listdir("/Users/brunocarvalho/Documents/LEI/Extratos/"+selecao)
 	print(dirs)
+	counter = 0
 	for dir in dirs:
 		print(dir)
 		if dir != '.DS_Store':
 			mylist = [f for f in glob.glob(f"../Extratos/{selecao}/{dir}/*.json")]
+			print('Analisando todos os ficheiros.....')
+			##Fazer análise para todos os ficheiros que estão na diretoria escolhida
+			##Aqui narcos!
+			for ficheiro in mylist:
+				print(ficheiro)
+				com_inventory = loadInfo(ficheiro)
+				comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
+				keywords = loadKeywordsRec(kw_inventory, prejudice)
+				prejsComents = analise(comentarios, keywords)
+				# printOcurrencias(prejsComents)
+				totais = getPostOcur(prejsComents)
+				nComents = len(comentarios)
 
-	counter=0
-	print('Analisando todos os ficheiros.....')
+				excelWriter(prejsComents, nComents, totais, f"cenas{counter}", workbook)
+				counter += 1
 
-	# criação do xslx
-	workbook = xlsxwriter.Workbook('resultado.xlsx')
 
-	##Fazer análise para todos os ficheiros que estão na diretoria escolhida
-	##Aqui narcos!
-	for ficheiro in mylist:
-		print(ficheiro)
-		com_inventory = loadInfo(ficheiro)
-		comentarios = loadInfoExtract(com_inventory,'id','commentText','user')
-		keywords = loadKeywordsRec(kw_inventory,prejudice)
-		prejsComents = analise(comentarios,keywords)
-		printOcurrencias(prejsComents)
-		totais=getPostOcur(prejsComents)
-		nComents=len(comentarios)
 
-		excelWriter(prejsComents,nComents,totais,f"cenas{counter}",workbook)
-		counter+=1
 
 	
 main()
