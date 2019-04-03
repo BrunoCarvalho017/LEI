@@ -134,7 +134,7 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 	currente = 4
 
 	worksheet = workbook.add_worksheet(worksheetName)
-	print(workbook.sheetnames)
+
 	#Parte estatica
 	bold = workbook.add_format({'bold': True})
 	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
@@ -277,16 +277,18 @@ def main():
 			##Fazer análise para todos os ficheiros que estão na diretoria escolhida
 			##Aqui narcos!
 			for ficheiro in mylist:
-				print(ficheiro)
 				com_inventory = loadInfo(ficheiro)
-				comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
+				if(selecao=="youtube"):
+					comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
+				else:
+					comentarios = loadInfoExtract(com_inventory, 'comment_id', 'comment_message', 'comment_by')
 				keywords = loadKeywordsRec(kw_inventory, prejudice)
 				prejsComents = analise(comentarios, keywords)
-				# printOcurrencias(prejsComents)
+				#printOcurrencias(prejsComents)
 				totais = getPostOcur(prejsComents)
 				nComents = len(comentarios)
 
-				excelWriter(prejsComents, nComents, totais, f"cenas{counter}", workbook)
+				excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook)
 				counter += 1
 
 	#fechar o workbook
