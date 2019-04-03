@@ -1,9 +1,8 @@
-#!/usr/local/bin/python3
-##!/usr/bin/python3
+#!/usr/bin/python3
+##!/usr/local/bin/python3
 
 import json,sys,xlsxwriter,os,glob
 import re
-
 
 #class Post:
 	#def __init__(newObject,postid,arrayComments,ocur):
@@ -70,6 +69,7 @@ def loadKeywords(inventory,keyword):
 
 def checkNcount(comentario,keywords):
 	ocurrencias = []
+	#print(keywords)
 	for keyword in keywords:
 			#contabilizar o numero de occurencias da keyword dentro do comentario
 			nOcur = len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))
@@ -90,15 +90,18 @@ def analiseAux(comentarios,keywords,prejudice):
 		#totalWordCount += len(comentario.commentMessage.split())
 		ocurrencias = checkNcount(comentario,keywords)
 		if ocurrencias:
-			comentario.ocurrencias = ocurrencias
-			arraycoments.append(comentario)
+			comentario_copia = Comentario(comentario.comment_id,comentario.commentMessage,comentario.user,[])
+			comentario_copia.ocurrencias = ocurrencias
+			arraycoments.append(comentario_copia)
 	#Array de comentarios, em que cada um possui um array de ocurrencias 
 	value = (prejudice,arraycoments)
+	#print(value)
 	return value
 
 def analise(comentarios, keywords):
 	prejsComents = []
 	for kw in keywords:
+		#print(kw[1])
 		prejsComents.append(analiseAux(comentarios,kw[1],kw[0]))
 	return prejsComents
 
@@ -125,7 +128,7 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
-def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
+def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
 	#variaveis
 	#tam= len(comentarios[1])+3
 	total_linhas = 0
@@ -139,11 +142,13 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 	bold = workbook.add_format({'bold': True})
 	princ = workbook.add_format({'bold': True,'font_color':'white','font_size':'14','bg_color':'green'})
 	pre = workbook.add_format({'bold': True,'font_color':'black','font_size':'10','valign': 'vcenter','align': 'center','border_color':'black'})
+	worksheet.write('B1', 'Ficheiro',princ)
+	worksheet.merge_range('C1:E1',file_name,pre)
 	worksheet.write('B3', 'Prejudice',princ)
 	worksheet.write('C3', 'Comentario',princ)
 	worksheet.write('D3', 'ID',princ)
 	worksheet.write('E3', 'Frequencia',princ)
-	worksheet.write('H3', 'Total',princ)
+	worksheet.write('G3', 'Total',princ)
 
 	#Parte dinamica
 	for prejComents in prejsComents:
@@ -173,17 +178,17 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook):
 	worksheet.set_column('C:D',final)
 	worksheet.set_column('D:E',final_id)
 
-	worksheet.write('J3','Ocorrencias',princ)
-	worksheet.set_column('J:G',20)
+	worksheet.write('I3','Ocorrencias',princ)
+	worksheet.set_column('I:J',20)
 
 	counter=4
 	for info in totais:
 		str_counter=str(counter)
-		worksheet.write('J'+str_counter,str(info[0])+' ----> '+str(info[1]))
+		worksheet.write('I'+str_counter,str(info[0])+' ----> '+str(info[1]))
 		counter+=1
 
 
-	worksheet.merge_range('H4:H'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)
+	worksheet.merge_range('G4:G'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)
 
 	print('terminei')	
 
@@ -266,7 +271,7 @@ def main():
 	# criação do xslx
 	workbook = xlsxwriter.Workbook('resultado.xlsx')
 
-	dirs = os.listdir("/Users/brunocarvalho/Documents/LEI/Extratos/"+selecao)
+	dirs = os.listdir("../Extratos/"+selecao)
 	print(dirs)
 	counter = 0
 	for dir in dirs:
@@ -275,26 +280,24 @@ def main():
 			mylist = [f for f in glob.glob(f"../Extratos/{selecao}/{dir}/*.json")]
 			print('Analisando todos os ficheiros.....')
 			##Fazer análise para todos os ficheiros que estão na diretoria escolhida
-			##Aqui narcos!
 			for ficheiro in mylist:
+				print(ficheiro)
+				file_name = os.path.basename(ficheiro)
 				com_inventory = loadInfo(ficheiro)
-				if(selecao=="youtube"):
+				if(selecao == "youtube"):
 					comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
 				else:
 					comentarios = loadInfoExtract(com_inventory, 'comment_id', 'comment_message', 'comment_by')
 				keywords = loadKeywordsRec(kw_inventory, prejudice)
 				prejsComents = analise(comentarios, keywords)
-				#printOcurrencias(prejsComents)
+				printOcurrencias(prejsComents)
 				totais = getPostOcur(prejsComents)
 				nComents = len(comentarios)
 
-				excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook)
+				excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook, file_name)
 				counter += 1
 
 	#fechar o workbook
 	workbook.close()
 
-
-
-	
 main()
