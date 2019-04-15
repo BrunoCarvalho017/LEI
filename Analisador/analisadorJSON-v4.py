@@ -10,6 +10,12 @@ import re
 		#newObject.arrayComments=arrayComments
 		#newObject.ocurrencias=ocur
 
+
+#Classe Comentario
+#comment_id : ID do comentário
+#commentMessage : Texto do Comentario
+#user : ID do utilizador 
+#occurrencias : Objeto ocorrencias que permite guardar as ocorrencias de cada palavra reservada do respetivo comentario
 class Comentario:
 	def __init__(newObject,comment_id,commentMessage,user,ocur):
 		newObject.comment_id=comment_id
@@ -18,6 +24,7 @@ class Comentario:
 		newObject.ocurrencias=ocur
 
 
+#Função que extrai informação dos ficheiros de comentarios para um array
 def loadInfoExtract(inventory,com_id,com_txt,com_user):
 	arrayComments = []
 	i=0
@@ -26,11 +33,13 @@ def loadInfoExtract(inventory,com_id,com_txt,com_user):
 		i+=1
 	return arrayComments
 
+#Função de inicialização do python para tratar ficheiro JSON
 def loadInfo(file):
 	info = open(file).read()
 	inventory = json.loads(info)
 	return inventory
 
+#Função recursiva que trata de guardar para um array todos os valores do tipo lista de um objeto  
 def parseValues(objeto):
 	lista = []
 	for key in objeto.keys():
@@ -40,6 +49,8 @@ def parseValues(objeto):
 			lista += parseValues(objeto[key])		
 	return lista
 
+#Função que dado um preconceito e o inventário de comentários 
+#retorna um tuplo com o tipo de preconceito e as palavras reservadas (keywords)
 def loadKeywordsRecAux(inventory,prejudice):
 	value = ()
 	for items in inventory:
@@ -47,6 +58,8 @@ def loadKeywordsRecAux(inventory,prejudice):
 			value = (prejudice, parseValues(items['Sociolinguistic variables']))
 	return value
 
+#Função global, que dada a escolha do utilizador, se auxilia na função loadKeywordsRec 
+#para retornar a lista de tuplos de preconceitos-keywords
 def loadKeywordsRec(inventory,choice):
 	prejudices = ["Sexism","Ageism","Racism","Nationalism","Classism","Intolerance_to"]
 	arrayKW = []
@@ -57,6 +70,8 @@ def loadKeywordsRec(inventory,choice):
 		arrayKW.append(loadKeywordsRecAux(inventory,prejudices[choice]))
 	return arrayKW
 
+
+#Função Obsoleta
 def loadKeywords(inventory,keyword):
 	arrayKeywords = []
 	i=0
@@ -67,6 +82,8 @@ def loadKeywords(inventory,keyword):
 				arrayKeywords=values
 	return arrayKeywords
 
+#Função que realiza o trabalho de procura da string da Keyword na string do texto do comentário
+#Caso encotre, cria um triplo com a keyword, o numero de occorencias e o total de palavras do comentario em questao
 def checkNcount(comentario,keywords):
 	ocurrencias = []
 	#print(keywords)
@@ -81,7 +98,11 @@ def checkNcount(comentario,keywords):
 				#print(comentario.commentMessage)
 	return ocurrencias
 
-
+#Função que retorna um tuplo com o preconceito e um array de comentarios 
+# onde existe a ocorrencia desse preconceito
+#
+#Nesse array de comentarios, estes são carregados com a informação das 
+# suas ocorrencias no elemento ocurrencias da classe comentario
 def analiseAux(comentarios,keywords,prejudice):
 	ocurrencias = []
 	arraycoments = []
@@ -98,6 +119,9 @@ def analiseAux(comentarios,keywords,prejudice):
 	#print(value)
 	return value
 
+
+#Função que retorna um array com todos os tuplos preconceito-comentarios 
+#resultantes da funçãoauxiliar analiseAux
 def analise(comentarios, keywords):
 	prejsComents = []
 	for kw in keywords:
@@ -105,6 +129,9 @@ def analise(comentarios, keywords):
 		prejsComents.append(analiseAux(comentarios,kw[1],kw[0]))
 	return prejsComents
 
+
+#Função que retorna os tuplos de ocorrencias de keywords para o post
+#Basicamente soma as ocorrencias dos comentarios para gerar as do post 
 def getPostOcur(prejsComents):
 	postOcur = []
 	for prejComents in prejsComents:
@@ -114,6 +141,7 @@ def getPostOcur(prejsComents):
 	postOcur = [(i,sum(x[1] for x in postOcur if x[0] == i)) for i in my_set]
 	return postOcur
 
+#Função de pretty printing para debbugging
 def printOcurrencias(prejsComents):
 	str = ""
 	for prejComents in prejsComents:
@@ -128,6 +156,8 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
+#Função que desenha o excell com as estatísticas
+#Frequencias relativas, absolutas e totais dos comentarios para cada post
 def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
 	#variaveis
 	#tam= len(comentarios[1])+3
@@ -192,6 +222,7 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
 
 	print('terminei')	
 
+#Função geral
 def main():
 	menu = {}
 	menu['1']="Sexism" 
