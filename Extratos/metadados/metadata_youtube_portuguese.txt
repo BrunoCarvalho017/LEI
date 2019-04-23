@@ -606,28 +606,3 @@ Video:
 Author / Owner:
 Number Comments:
 Views:
-
-
-
----Youtube_extraction_portuguese_
-CMC Source Text type:   audio-visual
-Language:        portuguese
-Date Posted:     201- -
-Date Extraction: 2019-02-20
-Title type='youtubePost':
-URL type='youtubePost':
-Setting:         ???
-Type of online platform/channel: YouTube
-Sociolinguistic variables:       Intolerance to: Sexual Identity
-Keywords/Expressions of Comments:
-Extracted file type: json
-Source type: video
-Comments permanently open: yes
-
-Post text:
-Likes:   mil
-Dislikes:  mil
-Video:
-Author / Owner:
-Number Comments:
-Views:

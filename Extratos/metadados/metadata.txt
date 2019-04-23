@@ -1,0 +1,44 @@
+Metadata Annotation: Generic Schema
+
+- Text Class [id=journalistic|pictorical|audiovisual|diaristic]
+- Language
+- Date Posted
+- Date Extracted
+- Title [type=newsArticle|facebookPost|youtubePost|twitterPost|instagramPost]
+- URL [type=newsArticle|facebookPost|youtubePost|twitterPost|instagramPost]
+- Setting (social situation / event that triggers news and comments and interaction)
+- Platform [type=Twitter|YouTube|Facebook|Instagram|Newspaper]
+- Sociolinguistic variables
+- Keywords/Expressions of Comments
+- File Extrated [type=csv|json|xlsx|html]
+- Source type [type=text|video|image|audio url=""]
+- Comments open [open=yes|not]
+
+
+
+Metadata Annotation: Specific Schema -- Newspaper
+
+- Name of the Newspaper
+- Author Article
+- Number Comments
+- Shares
+- Article Keywords
+- Newspaper text
+
+
+Metadata Annotation: Specific Schema -- Facebook
+
+- Owner (correio da manha; PNR- Partido NACIONAL RENOVADOR)
+- Number Comments
+- Shares
+- Newspaper text  --- LIGAR AO metadata do newspaper
+- Likes
+
+
+Metadata Annotation: Specific Schema -- YouTube
+- Post text
+- Likes
+- Dislikes
+- Owner
+- Number Comments
+- Views
