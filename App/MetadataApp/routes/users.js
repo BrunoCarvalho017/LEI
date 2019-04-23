@@ -11,12 +11,7 @@ router.get('/', function(req, res, next) {
 router.get('/getFiles/:tipo',function(req,res,next){
   var listFiles
   var tipoEmURL = (req.params.tipo)
-  var folderPath
-
-  if(tipoEmURL == 'youtube')
-    folderPath = '../../Extratos/'+tipoEmURL+'/fase2'
-  else
-    folderPath = '../../Extratos/'+tipoEmURL
+  var folderPath = '../../Extratos/'+tipoEmURL
 
   var listFiles = fs.readdirSync(folderPath);
 
@@ -25,7 +20,7 @@ router.get('/getFiles/:tipo',function(req,res,next){
   })*/
 
   console.log(listFiles);
-  //res.render('fileSelect',{files: listFiles});
+  res.render('fileSelect',{files: listFiles});
 });
 
 module.exports = router;
