@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  .w3-container
+    select.w3-select(name="fileOptions")
+        option(value='' disable='' selected='') Escolha o ficheiro que pretende:
+        each file in files
+            option(value=''+file) file
