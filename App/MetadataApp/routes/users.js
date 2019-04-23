@@ -11,11 +11,18 @@ router.get('/', function(req, res, next) {
 router.get('/getFiles/:tipo',function(req,res,next){
   var listFiles
   var tipoEmURL = (req.params.tipo)
-  var folderPath = '../../../Extratos/'+tipoEmURL
+  var folderPath
 
-  fs.readdirSync(folderPath).forEach(file=>{
+  if(tipoEmURL == 'youtube')
+    folderPath = '../../Extratos/'+tipoEmURL+'/fase2'
+  else
+    folderPath = '../../Extratos/'+tipoEmURL
+
+  var listFiles = fs.readdirSync(folderPath);
+
+  /*fs.readdirSync(folderPath).forEach(file=>{
     console.log(file);
-  })
+  })*/
 
   console.log(listFiles);
   //res.render('fileSelect',{files: listFiles});
