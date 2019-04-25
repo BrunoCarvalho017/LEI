@@ -2,7 +2,9 @@ extends layout
 
 block content
   .w3-container
-    select.w3-select(name="fileOptions")
-        option(value='' disable='' selected='') Escolha o ficheiro que pretende:
-        each file in files
-            option(value=''+file)= file
+    form.w3-container(method='POST' action="/users/compile" enctype='multipart/form-data')
+      h1.w3-text-teal 
+      input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro')
+      input(type="hidden" name="tipo" value=tipo)
+      input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Enviar')
+      
