@@ -35,7 +35,9 @@ router.post('/compile', (req, res) => {
               if (err) throw err;
               // results is an array consisting of messages collected during execution
               console.log('results: %j', results);
-              res.redirect('/')
+              //res.redirect('/')
+              res.render('metadataSubmission',{prints: results});
+              //res.render('metadataSubmission');
             });
           }
           else{

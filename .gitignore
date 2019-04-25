@@ -1,2 +1,6 @@
 # Ignore folder node_modules
 App/MetadataApp/node_modules/
+App/MetadataApp/resultado.xlsx
+App/MetadataApp/public/uploaded/
+Analisador/resultado.xlsx
+Analisador/metadata.json

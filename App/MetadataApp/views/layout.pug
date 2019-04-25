@@ -5,5 +5,48 @@ html
     link(rel='stylesheet', href='/stylesheets/w3.css')
     script(src="/javascripts/jquery-3.3.1.min.js")
     script(src="/javascripts/engine.js")
+    style.
+      #grey{
+        background-color: rgb(191, 191, 191);
+      }
+      #lgrey{
+        background-color: rgb(242, 242, 242);
+      }
+      .vl {
+      border-left-width: 6px;
+      border-left-style: solid;
+      border-left-color: DarkGray;
+      height: 100%;
+      position: absolute;
+      left: 50%;
+      margin-left: -3px;
+      top: 0;
+      }
+      .split-left {
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+      left: 0;
+      // background-color: rgb(242, 242, 242); 
+      }
+      .split-right {
+      border-left-width: 6px;
+      border-left-style: solid;
+      border-left-color: DarkGray;
+      height: 100%;
+      width: 50%;
+      position: fixed;
+      z-index: 1;
+      top: 0;
+      overflow-x: hidden;
+      padding-top: 20px;
+      right: 0;
+      // text-align: center;
+      // background-color: rgb(242, 242, 242);
+      }
   body
     block content
