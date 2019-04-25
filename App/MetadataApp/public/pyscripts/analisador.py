@@ -156,6 +156,7 @@ def printOcurrencias(prejsComents):
 	
 	print(str)
 
+
 #Função que desenha o excell com as estatísticas
 #Frequencias relativas, absolutas e totais dos comentarios para cada post
 def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
@@ -222,6 +223,51 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
 
 	print('terminei')	
 
+#Função que desmembra o array prejsComents em prejsKW 
+# (array que representa as keywords por preconceito) 
+def kwNprej(prejsComents):
+	prejsKW = {}
+	for prej,com in prejsComents:
+		if com:
+			prejsKW[prej] = []
+			for elem in com:
+				ocur = elem.ocurrencias
+				for item in ocur:
+					if item[0] not in prejsKW[prej]:
+						prejsKW[prej].append(item[0])
+	#print(prejsKW)
+	return prejsKW
+
+#Função de criação do objeto JSON
+def jsonMetadataWriter(prejsComents):
+	json_obj = {
+		"CMC Source Text type":"",
+		"Language":"",
+		"Date posted":"",
+		"Date Extraction":"",
+		"Title type":"",
+		"URL type":"",
+		"Setting":"",
+		"Type of online platform/channel":"",
+		"Sociolinguistic Variables":[],
+		"Keywords/Expressions of Comments":[],
+		"Extracted file type":"",
+		"Source type":"",
+		"Comments permanently open":""
+	}
+
+	prejsKW = kwNprej(prejsComents)
+	sv = "Sociolinguistic Variables"
+	kws = "Keywords/Expressions of Comments"
+	for key, value in prejsKW.items():
+		json_obj[sv].append(key)
+		for elem in value:
+			json_obj[kws].append(elem)
+	
+	print(json_obj)
+	with open('metadata.json', 'w') as outfile:  
+		json.dump(json_obj, outfile, indent=4, ensure_ascii=False)
+
 #Função geral
 def main():
 	selection = sys.argv[1]
@@ -254,8 +300,10 @@ def main():
 	totais = getPostOcur(prejsComents)
 	nComents = len(comentarios)
 
+	jsonMetadataWriter(prejsComents)
 	excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook, file_path)
-	counter += 1
+
+	#counter += 1
 
 	#fechar o workbook
 	workbook.close()
