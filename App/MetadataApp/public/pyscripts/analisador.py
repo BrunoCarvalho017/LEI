@@ -241,28 +241,26 @@ def kwNprej(prejsComents):
 #Função de criação do objeto JSON
 def jsonMetadataWriter(prejsComents):
 	json_obj = {
-		"CMC Source Text type":"",
-		"Language":"",
-		"Date posted":"",
-		"Date Extraction":"",
-		"Title type":"",
-		"URL type":"",
-		"Setting":"",
-		"Type of online platform/channel":"",
-		"Sociolinguistic Variables":[],
-		"Keywords/Expressions of Comments":[],
-		"Extracted file type":"",
-		"Source type":"",
-		"Comments permanently open":""
+		"cmc":"",
+		"lang":"",
+		"date_p":"",
+		"date_e":"",
+		"title_type":"",
+		"url_type":"",
+		"setting":"",
+		"platform":"",
+		"svs":[],
+		"kws":[],
+		"extract_file_type":"",
+		"source_type":"",
+		"cpo":""
 	}
 
 	prejsKW = kwNprej(prejsComents)
-	sv = "Sociolinguistic Variables"
-	kws = "Keywords/Expressions of Comments"
 	for key, value in prejsKW.items():
-		json_obj[sv].append(key)
+		json_obj['svs'].append(key)
 		for elem in value:
-			json_obj[kws].append(elem)
+			json_obj['kws'].append(elem)
 	
 	print(json_obj)
 	with open('metadata.json', 'w') as outfile:  

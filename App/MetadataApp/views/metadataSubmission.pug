@@ -1,8 +1,99 @@
 extends layout
 
 block content
-  .w3-container
-    .split-left
-    .split-right
+  .header
+    h1 Metadata Submission
+  .row
+    .main
+      form.w3-container(method='POST' action="/users/submitMeta" enctype='multipart/form-data')
+        label.w3-text
+          b NLP - Natural Language Processing
+        .w3-row-padding
+          .w3-half
+            .label Sociolinguistic Variables
+            select#mySelect(name="svs_options" multiple='', size='8')
+              each sv in svs
+                option #{sv}
+            input#sv_field.w3-input.w3-border(type='text' name="sv_field" placeholder='Add sociolinguistic variable')
+            button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption()') Add
+          .w3-half
+            .label Keywords and Expressions
+            select#mySelect2(name="kws_options" multiple='', size='8')
+              each kw in kws
+                option #{kw}
+            input#kw_field.w3-input.w3-border(type='text' name="kw_field" placeholder='Add keyword or expression')
+            button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption2()') Add
+        hr
+
+        .w3-panel.w3-padding
+          label.w3-text
+            b CMC Source Text Type
+          input.w3-input(type='text' name="cmc")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Language
+          select.w3-select(name='lang')
+            option(value='' disabled='' selected='') Choose your option
+            option(value='english') english
+            option(value='portuguese') portuguese
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Date posted
+          input.w3-input(type='date' name="date_p")
+
+        .w3-panel.w3-padding
+          label.w3-text
+            b Date Extraction
+          input.w3-input(type='date' name="date_e")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Title Type
+          input.w3-input(type='text' name="title_type")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b URL Type
+          input.w3-input(type='text' name="url_type")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Setting
+          input.w3-input(type='text' name="setting")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Type of online platform/channel
+          select.w3-select(name='platform')
+            option(value='' disabled='' selected='') Choose your option
+            option(value='Facebook') Facebook
+            option(value='Youtube') Youtube
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Extracted File Type
+          input.w3-input(type='text' name="extract_file_type")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Source Type
+          input.w3-input(type='text' name="source_type")
+      
+        .w3-panel.w3-padding
+          label.w3-text
+            b Comments Permanently Open
+          .w3-row-padding
+            .w3-half
+              input.w3-radio(type='radio' name='cpo' value='no' checked='')
+              | Yes
+            .w3-half
+              input.w3-radio(type='radio' name='cpo' value='yes')
+              | No
+        input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submit')
+    .side
         each print in prints
-          p #{print} 
+          p #{print}   
+  .footer
+    h2 Footer
