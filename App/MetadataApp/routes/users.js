@@ -66,6 +66,20 @@ router.post('/compile', (req, res) => {
   })  
 })
 
+router.get('/projeto',function(req,res,next){
+      res.render('projeto');
+});
+
+router.get('/utilizar',function(req,res,next){
+  res.render('utilizar');
+});
+
+router.get('/grupo',function(req,res,next){
+  res.render('grupo');
+});
+
+
+
 router.get('/getFiles/:tipo',function(req,res,next){
   var tipoEmURL = (req.params.tipo)
   res.render('fileSelect',{tipo: tipoEmURL});

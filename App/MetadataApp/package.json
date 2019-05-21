@@ -6,13 +6,17 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "clean-css": "^4.2.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
     "formidable": "^1.2.1",
     "http-errors": "~1.6.2",
     "morgan": "~1.9.0",
+    "optimizer": "^1.8.4",
+    "path": "^0.12.7",
     "pug": "^2.0.3",
-    "python-shell": "^1.0.7"
+    "python-shell": "^1.0.7",
+    "source-map": "^0.7.3"
   }
 }
