@@ -1,10 +1,10 @@
 var express = require('express');
 var fs = require('fs');
-var path = require('path')
+var path = require('path');
 var router = express.Router();
 var formidable = require('formidable')
 const {PythonShell} = require("python-shell");
-const metadata = require('../metadata.json')
+const metadata = require('../metadata.json');
 
 router.post('/submitMeta', (req,res) => {
   var form = new formidable.IncomingForm()
@@ -45,7 +45,7 @@ router.post('/compile', (req, res) => {
           if(!erro){
             let options = {
               mode: 'text',
-              pythonPath: '/usr/bin/python3',
+              pythonPath: '/usr/local/bin/python3',
               pythonOptions: ['-u'], // get print results in real-time
               scriptPath: './public/pyscripts',
               args: [tipo,fnovo,'./public/uploaded/keywords_pt.json']

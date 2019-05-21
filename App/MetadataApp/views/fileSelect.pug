@@ -1,10 +1,20 @@
 extends layout
 
 block content
-  .w3-container
-    form.w3-container(method='POST' action="/users/compile" enctype='multipart/form-data')
-      h1.w3-text-teal 
-      input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro')
-      input(type="hidden" name="tipo" value=tipo)
-      input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Enviar')
+    .w3-card-4.w3-dark-grey.w3-display-middle.w3-center
+      .w3-container
+        h3 Submissão de ficheiro
+        i.fas.fa-file-upload.w3-xxxlarge
+        br
+        br
+        form(method='POST' action="/users/compile" enctype='multipart/form-data')
+          input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro')
+          input(type="hidden" name="tipo" value=tipo)
+          br
+          input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submeter')
+          br
+          br
+      
+      
+    
       
