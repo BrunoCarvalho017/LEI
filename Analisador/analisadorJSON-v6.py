@@ -28,7 +28,7 @@ class Comentario:
 def loadInfoExtract(inventory,com_id,com_txt,com_user):
     arrayComments = []
     i=0
-    for item in inventory["commentThread"]:
+    for item in inventory:
         arrayComments.append(Comentario(item[com_id],item[com_txt],item[com_user],[]))
         i+=1
     return arrayComments
@@ -63,10 +63,7 @@ def loadKeywordsRecAux(inventory,prejudice):
 #Função global, que dada a escolha do utilizador, se auxilia na função loadKeywordsRec 
 #para retornar a lista de tuplos de preconceitos-keywords
 def loadKeywordsRec(inventory,choice):
-    prejudices = [	"Sexism","Ageism","Racism",
-    			"Nationalism","Classism","Homophobia",
-			"Anti-Clericalism","Body Shaming",
-			"Addiction Shaming","Ideological Shaming"	]
+    prejudices = ["Sexism","Ageism","Racism","Nationalism","Classism","Intolerance_to"]
     arrayKW = []
     if (choice == 6):
         for prejudice in prejudices:
@@ -81,7 +78,7 @@ def loadKeywords(inventory,keyword):
     arrayKeywords = []
     i=0
     for items in inventory:
-        if(items['type_prejudice'] == keyword):	
+        if(items['type_prejudice']==keyword):	
             for values in items['Sociolinguistic variables'].values():
                 print(values)
                 arrayKeywords=values
@@ -243,7 +240,7 @@ def kwNprej(prejsComents):
     return prejsKW
 
 #Função de criação do objeto JSON
-def jsonMetadataWriter(prejsComents):
+def jsonObjCreator(prejsComents):
     json_obj = {
         "fname":"",
         "cmc":"",
@@ -273,42 +270,43 @@ def jsonMetadataWriter(prejsComents):
 
 #Função geral
 def main():
-	selection = sys.argv[1]
-	file_path = sys.argv[2]
-	keywords_path = sys.argv[3]
-	#file_path = f"../Extratos/{selection}/{file_name}"
+    # criação do inventário das keywords
+    kw_inventory = loadInfo("../Keywords/keywords_pt.json")
 
-	# criação do inventário das keywords
-	kw_inventory = loadInfo(keywords_path)
+    # criação do xslx
+    workbook = xlsxwriter.Workbook('resultado.xlsx')
 
-	# criação do xslx
-	workbook = xlsxwriter.Workbook('resultado.xlsx')
+    selection = sys.argv[1]
+    file_name = sys.argv[2]
+    file_path = f"../Extratos/{selection}/{file_name}"          
 
-	prejudice = 6
-	
-	counter = 0
-	
-	print('A analisar ficheiro.....')
-	##Fazer análise do ficheiro escolhido
-	print(file_path)
+    prejudice = 6
+    
+    counter = 0
+    
+    print('A analisar ficheiro.....')
+    ##Fazer análise do ficheiro escolhido
+    print(file_path)
 
-	com_inventory = loadInfo(file_path)
-	if(selection == "youtube"):
-		comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
-	else:
-		comentarios = loadInfoExtract(com_inventory, 'comment_id', 'comment_message', 'comment_by')
-	keywords = loadKeywordsRec(kw_inventory, prejudice)
-	prejsComents = analise(comentarios, keywords)
-	printOcurrencias(prejsComents)
-	totais = getPostOcur(prejsComents)
-	nComents = len(comentarios)
+    com_inventory = loadInfo(file_path)
+    if(selection == "youtube"):
+        comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
+    else:
+        comentarios = loadInfoExtract(com_inventory, 'comment_id', 'comment_message', 'comment_by')
+    keywords = loadKeywordsRec(kw_inventory, prejudice)
+    prejsComents = analise(comentarios, keywords)
+    #prejsKW = kwNprej(prejsComents)
+    jsonObjCreator(prejsComents)
+    """
+    printOcurrencias(prejsComents)
+    totais = getPostOcur(prejsComents)
+    nComents = len(comentarios)
 
-	jsonMetadataWriter(prejsComents)
-	excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook, file_path)
+    excelWriter(prejsComents, nComents, totais, f"sheet{counter}", workbook, file_name)
+    counter += 1
 
-	#counter += 1
-
-	#fechar o workbook
-	workbook.close()
+    #fechar o workbook
+    workbook.close()
+    """
 
 main()

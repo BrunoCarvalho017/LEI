@@ -4,7 +4,8 @@ var path = require('path');
 var router = express.Router();
 var formidable = require('formidable')
 const {PythonShell} = require("python-shell");
-const metadata = require('../metadata.json');
+//const metadata = require('../metadata.json');
+var metadata;
 
 router.post('/submitMeta', (req,res) => {
   var form = new formidable.IncomingForm()
@@ -45,16 +46,26 @@ router.post('/compile', (req, res) => {
           if(!erro){
             let options = {
               mode: 'text',
-              pythonPath: '/usr/local/bin/python3',
+              pythonPath: '/usr/bin/python3',
               pythonOptions: ['-u'], // get print results in real-time
               scriptPath: './public/pyscripts',
               args: [tipo,fnovo,'./public/uploaded/keywords_pt.json']
             };
-             
+
             PythonShell.run('analisador.py', options, function (err, results) {
               if (err) throw err;
               // results is an array consisting of messages collected during execution
               console.log('results: %j', results);
+
+              //Leitura do metadata (refresshing do ficheiro metadata;) 
+            try {
+              let rawdata = fs.readFileSync('metadata.json');  
+              metadata = JSON.parse(rawdata);  
+              console.log(metadata)
+            } catch (err) {
+              console.error(err)
+            }
+
               res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs });
             });
           }
