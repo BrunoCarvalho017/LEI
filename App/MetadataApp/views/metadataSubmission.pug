@@ -19,16 +19,18 @@ block content
         .w3-row-padding
           .w3-half
             .label Sociolinguistic Variables
-            select#mySelect(name="svs_options" multiple='', size='8')
-              each sv in svs
-                option #{sv}
+            each sv in svs
+              input(type='checkbox' name='featured_svs[]' value=sv)
+              | #{sv} 
+            br
             input#sv_field.w3-input.w3-border(type='text' name="sv_field" placeholder='Add sociolinguistic variable')
             button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption()') Add
           .w3-half
             .label Keywords and Expressions
-            select#mySelect2(name="kws_options" multiple='', size='8')
-              each kw in kws
-                option #{kw}
+            each kw in kws
+              input(type='checkbox' name='featured_kws[]' value=kw)
+              | #{kw} 
+            br
             input#kw_field.w3-input.w3-border(type='text' name="kw_field" placeholder='Add keyword or expression')
             button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption2()') Add
         hr

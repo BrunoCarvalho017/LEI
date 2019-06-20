@@ -3,6 +3,8 @@
 
 import json,sys,xlsxwriter,os,glob
 import re
+from fuzzywuzzy import fuzz
+from fuzzywuzzy import process
 
 #class Post:
     #def __init__(newObject,postid,arrayComments,ocur):
@@ -92,15 +94,32 @@ def loadKeywords(inventory,keyword):
 def checkNcount(comentario,keywords):
     ocurrencias = []
     #print(keywords)
+    nOcur = 0
+    wordcount = 0
     for keyword in keywords:
-            #contabilizar o numero de occurencias da keyword dentro do comentario
-            nOcur = len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))
-            if(nOcur > 0):
-                #contabilizar o numero total de palavras
-                wordcount = len(comentario.commentMessage.split())
-                value = (keyword, nOcur, wordcount)
-                ocurrencias.append(value)
-                #print(comentario.commentMessage)
+        """
+        #contabilizar o numero de occurencias da keyword dentro do comentario
+        nOcur = len(re.findall(r"\b"+keyword+r"\b",comentario.commentMessage,re.I))
+        if(nOcur > 0):
+            #contabilizar o numero total de palavras
+            wordcount = len(comentario.commentMessage.split())
+            value = (keyword, nOcur, wordcount)
+            ocurrencias.append(value)
+            #print(comentario.commentMessage)
+        """
+        words = comentario.commentMessage.split()
+        for word in words:
+            if fuzz.ratio(word,keyword) >= 75:
+                nOcur += 1
+        if(nOcur > 0):
+            #contabilizar o numero total de palavras
+            wordcount = len(comentario.commentMessage.split())
+            value = (keyword, nOcur, wordcount)
+            ocurrencias.append(value)
+            #print(comentario.commentMessage)
+            nOcur = 0
+            wordcount = 0
+
     return ocurrencias
 
 #Função que retorna um tuplo com o preconceito e um array de comentarios 

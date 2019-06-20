@@ -1,14 +1,23 @@
 var express = require('express');
 var fs = require('fs');
 var path = require('path');
+var util = require('util');
 var router = express.Router();
 var formidable = require('formidable')
 const {PythonShell} = require("python-shell");
 //const metadata = require('../metadata.json');
 var metadata;
 
+
+// var validate = require('json-schema').validate;
+var Ajv = require('ajv');
+var ajv = new Ajv(); // options can be passed, e.g. {allErrors: true}
+
+
 router.post('/submitMeta', (req,res) => {
+  
   var form = new formidable.IncomingForm()
+  
   form.parse(req, (erro,fields,files)=>{
     metadata['cmc']=fields.cmc
     metadata['lang']=fields.lang
@@ -19,17 +28,21 @@ router.post('/submitMeta', (req,res) => {
     metadata['setting']=fields.setting
     metadata['platform']=fields.platform
     metadata['extract_file_type']=fields.extract_file_type
-    metadata['sorce_type']=fields.source_type
+    metadata['source_type']=fields.source_type
     metadata['cpo']=fields.cpo
-   
+    metadata['svs']=fields.featured_svs
+    metadata['kws']=fields.featured_kws
+
+    console.log(fields)
+
     json = JSON.stringify(metadata); //convert it back to json
     fs.writeFile('metadata.json', json, 'utf8', (err) => {
       if (err) throw err;
       console.log('Data written to file');
       res.redirect('/')
     }); 
+    
   })
-
 })
 
 router.post('/compile', (req, res) => {
@@ -44,33 +57,68 @@ router.post('/compile', (req, res) => {
       
       fs.rename(fenviado, fnovo, erro => {
           if(!erro){
-            let options = {
-              mode: 'text',
-              pythonPath: '/usr/bin/python3',
-              pythonOptions: ['-u'], // get print results in real-time
-              scriptPath: './public/pyscripts',
-              args: [tipo,fnovo,'./public/uploaded/keywords_pt.json']
-            };
+            // Load a schema by which to validate
+            fs.readFile('schema.json',function(err,rawdata) {
+              if(!err) {
+                var schema = JSON.parse(rawdata);
+                // Load data file
+                fs.readFile(fnovo,function(err,rawdata) {
+                  if(!err) {
+                    // Parse as JSON
+                    var submited_file = JSON.parse(rawdata);
 
-            PythonShell.run('analisador.py', options, function (err, results) {
-              if (err) throw err;
-              // results is an array consisting of messages collected during execution
-              console.log('results: %j', results);
+                    var validate = ajv.compile(schema);
+                    var valid = validate(submited_file);
+                    console.log(valid)
 
-              //Leitura do metadata (refresshing do ficheiro metadata;) 
-            try {
-              let rawdata = fs.readFileSync('metadata.json');  
-              metadata = JSON.parse(rawdata);  
-              console.log(metadata)
-            } catch (err) {
-              console.error(err)
-            }
+                    if(valid){
+                      let options = {
+                        mode: 'text',
+                        pythonPath: '/usr/bin/python3',
+                        pythonOptions: ['-u'], // get print results in real-time
+                        scriptPath: './public/pyscripts',
+                        args: [tipo,fnovo,'./public/uploaded/keywords_pt.json']
+                      };
+                      
+                      PythonShell.run('analisador.py', options, function (err, results) {
+                        if (!err) {
+                          // results is an array consisting of messages collected during execution
+                          console.log('results: %j', results);
 
-              res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs });
+                          let rawdata = fs.readFileSync('metadata.json');  
+                          metadata = JSON.parse(rawdata);  
+                          console.log(metadata)
+                          res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs });
+                        }
+                        else{
+                          console.log("Erro no analisador")
+                          res.render('error',{error: err});
+                        }
+                      });
+                    }
+                    else{
+                      console.log("Ficheiro não corresponde ao esquema")
+                      res.jsonp({success : valid})
+                      //res.render('error',{error: err});
+                    }
+                  }
+                  else{
+                    // throw err
+                    console.log("Erro na leitura do ficheiro")
+                    res.render('error',{error: err});
+                  }
+                });
+              }
+              else{
+                // throw err
+                console.log("Erro na leitura do esquema")
+                res.render('error',{error: err});
+              }
             });
-          }
+          } 
           else{
               console.log('Ocorreu erro no rename')
+              //res.render('error',{error: "Erro no rename!!!"});
               res.end()
           }
       })

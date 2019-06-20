@@ -10,22 +10,21 @@ html
       function addOption() {
       var x = document.getElementById("mySelect");
       var option = document.createElement("option");
-      //option.text = document.getElementById("sv_field").value;
-      option.text = document.getElementsByName("sv_field")[0].value;
+      option.text = document.getElementById("sv_field").value;
+      //option.text = document.getElementsByName("sv_field")[0].value;
       x.add(option);
       }
       function addOption2() {
       var x = document.getElementById("mySelect2");
       var option = document.createElement("option");
-      //option.text = document.getElementById("kw_field").value;
-      option.text = document.getElementsByName("kw_field")[0].value;
+      option.text = document.getElementById("kw_field").value;
+      //option.text = document.getElementsByName("kw_field")[0].value;
       x.add(option);
       }
       function removeOption() {
       var x = document.getElementById("mySelect");
       x.remove(x.selectedIndex);
       }
-      /*
     style.
       * {
       box-sizing: border-box; 
@@ -109,6 +108,5 @@ html
       width: 100%;
       }
       }
-      */
   body
     block content
