@@ -6,6 +6,8 @@ var router = express.Router();
 var formidable = require('formidable')
 const {PythonShell} = require("python-shell");
 //const metadata = require('../metadata.json');
+var axios = require('axios')
+
 var metadata;
 
 
@@ -144,5 +146,21 @@ router.get('/getFiles/:tipo',function(req,res,next){
   res.render('fileSelect',{tipo: tipoEmURL});
 });
 
+router.get('/visualizacao/:id',function(req,res,next){
+  axios.get('http://localhost:3000/api/'+req.params.id)
+  .then(ficheiro => res.render('visualizacao', {ficheiro: ficheiro.data}))
+  .catch(erro => {
+      console.log('Erro na consulta do evento: ' + erro)
+      res.render('index')})
+});
+
+
+router.get('/listavisualizacao',function(req,res,next){
+  axios.get('http://localhost:3000/api/')
+  .then(ficheiro => res.render('listaderesults', {ficheiro: ficheiro.data}))
+  .catch(erro => {
+      console.log('Erro na consulta do evento: ' + erro)
+      res.render('index')})
+});
 
 module.exports = router;

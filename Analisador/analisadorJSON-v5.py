@@ -208,7 +208,7 @@ def excelWriter(prejsComents,nComents,totais,worksheetName,workbook, file_name):
 	worksheet.set_column('C:D',final)
 	worksheet.set_column('D:E',final_id)
 
-	worksheet.write('I3','Ocorrencias',princ)
+	worksheet.write('I3','Ocorrências',princ)
 	worksheet.set_column('I:J',20)
 
 	counter=4
