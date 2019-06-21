@@ -79,7 +79,7 @@ router.post('/compile', (req, res) => {
                         pythonPath: '/usr/bin/python3',
                         pythonOptions: ['-u'], // get print results in real-time
                         scriptPath: './public/pyscripts',
-                        args: [tipo,fnovo,'./public/uploaded/keywords_pt.json']
+                        args: [fnovo]
                       };
                       
                       PythonShell.run('analisador.py', options, function (err, results) {
