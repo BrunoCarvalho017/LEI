@@ -1,0 +1,80 @@
+{
+    "type":"object",
+    "properties": {
+        "header":{
+            "type":"object",
+            "properties":{
+                "title": {"type":"string"},
+                "subtitle": {"type":"string"},
+                "owner": {"type":"string"},
+                "views": {"type":"string"},
+                "likes": {"type":"string"},
+                "dislikes": {"type":"string"},
+                "shares": {"type":"string"},
+                "datePosted": {"type":"string"},
+                "dateExtraction": {"type":"string"},
+                "language": {"type":"string"},
+                "plataform": {"type":"string"},
+                "url": {"type":"string"},
+                "postText": {"type":"string"},
+                "numberPosts": {"type":"string"},
+                "srcType": {"type":"string"},
+                "nameNewspaper": {"type":"string"},
+                "socioLingVar": {"type":"string"},
+                "listEvents": {"type":"string"},
+                "articleKeywords": {"type":"string"},
+                "keywords": {"type":"string"},
+                "commentsOpen": {"type":"string"} 
+            },
+            "required": [
+                "title","subtitle","owner",
+                "views","likes","dislikes",
+                "shares","datePosted",
+                "dateExtraction","language",
+                "plataform","url","postText",
+                "numberPosts","srcType","nameNewspaper",
+                "socioLingVar","listEvents",
+                "articleKeywords","keywords",
+                "commentsOpen"
+            ]
+        },
+        "commentThread":{
+            "type":"array",
+            "items": {
+                "type":"object",
+                "properties":{
+                    "id": {"type":"string"},
+                    "user": {"type":"string"},
+                    "date": {"type":"string"},
+                    "timestamp": {"type":"number"},
+                    "commentText": {"type":"string"},
+                    "likes": {"type":"number"},
+                    "hasReplies": {"type":"boolean"},
+                    "numberOfReplies": {"type":"number"},
+                    "replies":{
+                        "type":"array",
+                        "items":{
+                            "type":"object",
+                            "properties":{
+                                "id": {"type":"string"},
+                                "user": {"type":"string"},
+                                "date": {"type":"string"},
+                                "timestamp": {"type":"number"},
+                                "commentText": {"type":"string"},
+                                "likes": {"type":"number"}
+                            },
+                            "required": [
+                                "id","user","date",
+                                "timestamp","commentText","likes"
+                            ]
+                        }
+                    }
+                },
+                "required": ["id","user","date",
+                        "timestamp","commentText","likes",
+                        "hasReplies","numberOfReplies"]
+            }
+        }
+    },
+    "required": ["header","commentThread"]
+}

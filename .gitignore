@@ -6,3 +6,6 @@ App/MetadataApp/metadata.json
 Analisador/resultado.xlsx
 Analisador/metadata.json
 Transformador/*.txt
+XDG_CACHE_HOME
+App/MetadataApp/cenas.txt
+BD/
