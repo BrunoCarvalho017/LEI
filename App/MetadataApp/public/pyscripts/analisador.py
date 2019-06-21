@@ -5,6 +5,7 @@ import json,sys,xlsxwriter,os,glob
 import re
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
+import pymongo
 
 #class Post:
     #def __init__(newObject,postid,arrayComments,ocur):
@@ -58,7 +59,7 @@ def loadKeywordsRecAux(inventory,prejudice):
     parsedValues = ()
     for items in inventory:
         if (items['type_prejudice'] == prejudice):
-            parsedValues = parseValues(items['Sociolinguistic variables']) 
+            parsedValues = parseValues(items['sociolinguistic_variables']) 
             value = (prejudice, parsedValues[0],parsedValues[1])
     return value
 
@@ -292,13 +293,20 @@ def jsonMetadataWriter(prejsComents):
 
 #Função geral
 def main():
-	selection = sys.argv[1]
-	file_path = sys.argv[2]
-	keywords_path = sys.argv[3]
-	#file_path = f"../Extratos/{selection}/{file_name}"
+	file_path = sys.argv[1]
+
+	myclient = pymongo.MongoClient("mongodb://localhost:27017/")
+	mydb = myclient["harambe"]
+	mycol = mydb["keywords"]
+
+	keywords = []
+	#x = mycol.find()
+	for x in mycol.find():
+		keywords.append(x)
+
 
 	# criação do inventário das keywords
-	kw_inventory = loadInfo(keywords_path)
+	kw_inventory = keywords
 
 	# criação do xslx
 	workbook = xlsxwriter.Workbook('resultado.xlsx')
@@ -312,10 +320,9 @@ def main():
 	print(file_path)
 
 	com_inventory = loadInfo(file_path)
-	if(selection == "youtube"):
-		comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
-	else:
-		comentarios = loadInfoExtract(com_inventory, 'comment_id', 'comment_message', 'comment_by')
+
+	comentarios = loadInfoExtract(com_inventory, 'id', 'commentText', 'user')
+
 	keywords = loadKeywordsRec(kw_inventory, prejudice)
 	prejsComents = analise(comentarios, keywords)
 	printOcurrencias(prejsComents)
@@ -329,5 +336,6 @@ def main():
 
 	#fechar o workbook
 	workbook.close()
+	myclient.close()
 
 main()

@@ -9,3 +9,4 @@ Transformador/*.txt
 XDG_CACHE_HOME
 App/MetadataApp/cenas.txt
 BD/
+.DS_Store
