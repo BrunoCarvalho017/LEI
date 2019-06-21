@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    br
+    br
+    header.w3-container(style="box-shadow: 0px 1px 6px grey")
+        h1 Ficheiros
+    br
+    br
+    .w3-container
+        .w3-display-bottommiddle(style="overflow: scroll; width: 101%; height: 90%; border: 0px solid grey;")
+            br
+            input( id="searchObras" type="text" placeholder="Procurar...").w3-input.w3-margin
+            .w3-container
+                table( id="obrasTable").w3-table.w3-table-all
+                    each f in ficheiros
+                        tr
+                            td
+                                .w3-bar
+                                    .w3-bar-item
+                                        if f.header.title
+                                        b
+                                            big #{f.header.title} 
+                                        br 
+                                        | Inserida por - #{f.header.owner}
+                                        br
+                                        | Plataforma - #{f.header.plataform}
+                                        br
+                                        | URL - #{f.header.url}
+                                        br
+                                        | #{f.header.datePosted}
+                                        br
+                                        | Data de Extração - #{f.header.dateExtraction}
+                                    
+                            td.w3-display-container
+                                .w3-display-right
+                                    a.w3-margin(href="http://localhost:3001/ficheiros/" + f.header.id)
+                                        i.fas.fa-eye
+                                    a.w3-margin(class="", href="")
+                                        i.fas.fa-trash-alt

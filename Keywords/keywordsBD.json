@@ -1,0 +1,222 @@
+[
+	{
+		"type_prejudice": "Sexism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"gender": ["Machismo","Machista","Género","Sexual","Sexismo","Misógino","Misoginia","Patriarcado","Mulher","Gaja","Tipa","Garina","Chavala","Miúda"],
+				"femaleAgeandPhysicalAppearance": ["Bruxa","Feiosa","Mostrenga","Monstra","Velha","Camafeu","Boazuda"],
+				"femaleSexuality": ["Badalhoca","Cabra","Cadela","Galdéria","Promíscua","Puta","Quenga","Mula","Ninfomaníaca","Rameira","Safada","Serigaita","Vadia","Vaca","Ordinária","Mulher de vida fácil","Piranha","Ganda","Marmita","Biscaite","Ridícula","Cachorra","Preparada","Popozuda","Vagabunda","Égua","Potranca","Boca de veludo","Boqueteira","Prostituta","Maria Gasolina","Maria Chuteira","Machadeira","Seringueira","Chupona","Boca de pelo"],
+				"femaleIntelligence": ["Burra","Loura","Loira","boneca oca","vai pra cozinha","feminazi"]
+			},
+			"en":{
+
+			}
+		}
+	},
+
+	{
+		"type_prejudice": "Ageism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"age": ["idade","idadismo","etário"],
+				"over65s": ["Velho","Velha","Velhote","Velhadas","Idoso","Idosa","Reformado","Reformada","Cota","Caquético","Senil","Acabado"],
+				"youngsters": ["Canalha","Canalhada","Dez reis de gente","Geração à rasca","Meia leca","Miudagem","Miúdo","Pingente","Piolho","Pirralho","Pulga","Franganote","Javardo","Totó"]
+			},
+			"en":{
+				"age":["age","ageing","ageism","ageist"],
+				"over65s": ["old","elder","elderly","senior","OAP","pensioner","bed-blocker","wrinklies"],
+				"youngsters": ["brat","half-pint","insect","lightweight","morsel","nobody","nonentity","nothing","twerp","whippersnapper","zero","zilch"]
+			}
+
+		}
+
+	},
+
+	{
+		"type_prejudice": "Racism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"ethnicity": ["Raça","Racismo","Racista","Etnia","Étnico"],
+				"aboriginal": [],
+				"arab": [],
+				"asianEast": ["Monhé"],
+				"asianSouth": ["Monhé", "Chamuça","Chamuças", "Betadine"],
+				"black": ["Preto","Preta","Negro","Negra","Africano","Africana","Macaco","Macaca","Escarumba","Conguito"],
+				"jewish": [],
+				"native-American": ["Índio","Vermelho","Pele Vermelha"],
+				"roma": ["Cigano","Boémio","Calon","Calé","Caló","Gitano","Quico","Lelo","Lela"],
+				"white": ["Branco","Cara-pálida","Gajo","Javalis lusitanos"]
+			},
+			"en":{
+				"ethnicity":["race","racism","racist","ethnic","ethnicity"],
+				"aboriginal": ["abo","abbo","boong","bong","bung","coon","gin","lubra"],
+				"arab": ["camel jockey","dune coon sand nigger","hajji","hadji","haji"],
+				"asian_East": ["buddhahead","oriental","pancake face","pancake","yellow","yellowman","yellowwoman","zip","zipperhead","banana"],
+				"asian_South": ["ABCD","curry muncher","dot","dothead","paki","brownie"],
+				"black": ["african","ape","black","bluegum","boogie","bootlips","buck","burrhead","burr-head","burr head","colored","coloured","coon","crow","darky","darkey","darkie","eggplant","eight ball","fuzzy","groid","jigaboo","jiggabo","jijjiboo","zigabo","jig","jigg","jiggy","jigga","jim crow","jungle bunny","monkey","mooncricket","negro","nig-nog","nigger","nigra","nigga","niggah","nigguh","porch monkey","powder burn","quashie","sambo","schvartse","schwartze","shiner","sooty","spade","spearchucker","spook","teapot","toad","thicklips"],
+				"jewish": [],
+				"native_American": ["indian","injun","prairie","nigger","red","redskin","timber nigger","squaw","apple"],
+				"roma": ["gypsy","gyppo","gypo","gyppie","gyppy","gipp","gippo","traveller"],
+				"white": ["cracker","gammon","hick","honky","honkey","honkie","medigan","amedigan","ofay","peckerwood","redneck","trailer trash","whitey","white trash"]
+			}
+		}
+	},
+
+	{
+		"type_prejudice": "Nationalism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"nationality": ["Nação", "Nacionalidade", "Nacionalismo", "Xenofobia", "Estrangeiro", "Estrangeira", "Refugiado", "Refugiada", "Migrante", "Imigrante", "Emigrante"],
+				"brazilian": ["Brasuca"],
+				"european": [],
+				"eastern_european": [],
+				"south_european": [],
+				"american": [],
+				"british": ["Bife","Bifa","Camone"],
+				"chinese": ["Chinoca","Olhos-em-bico","Amarelo"],
+				"french": ["Franciú","Francisco","Abec"],
+				"german": ["Boche","Nazi"],
+				"hispanic": [],
+				"indian": ["Monhé", "Chamuça","Chamuças", "Betadine"],
+				"irish": [],
+				"italian": [],
+				"japanese": ["Japoca","Olhos-em-bico","Amarelo"],
+				"mexican": [],
+				"portuguese": ["Portuga","Tuga"]
+			},
+			"en":{
+				"nationality": ["nation","nationality","nationalism","xenophobia","alien","refugee","migrant","immigrant","WOP","engineers and doctors"],
+				"brazilian": [],
+				"european": ["brexit","remainers","remoaners","brexiteer","quitter","leaver","EUSSR"],
+				"eastern_european": ["polish plumber"],
+				"south_european": ["PIGS","dago"],
+				"american": ["gringo","merkin","seppo","septic","yankee and yank"],
+				"british": ["limey","pom","pommy","tan"],
+				"chinese": ["ABC","chinaman","ching-chong","chink","coolie","oriental","slant","slant-eye","slope","slopehead","slopy","slopey","sloper","ting tong","yellow","yellowman","yellowwoman","sideways","vagina","pussy","cooter"],
+				"french": ["frog","froggy","frogeater"],
+				"german": ["boche","cabbage eater","fritz","herman","herm","hun","jerry","gerry","kraut","marmeladinger","squarehead"],
+				"hispanic": ["spic","spick","spik","spig","spigotty","brownie","wetback"],
+				"indian":[],
+				"irish": ["bog-trotter","bog irish","chav","fenian","mick","paddy","pikey","piky","piker","dogan","dogun"],
+				"italian": ["dago","eyetie","ginzo","goombah","greaser","greaseball","guido","guinea","hike","wop"],
+				"japanese": ["gook","jap","nip","oriental","yellow","yellowman","yellowwoman"],
+				"mexican": ["beaner","greaseball","greaser","tacohead"],
+				"portuguese": ["pork-and-cheese","portagee"]
+			}
+		}
+	},
+
+	{
+		"type_prejudice": "Classism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"social_class": ["Classimo","Aporofobia", "Arrivista", "Caça-fortunas", "Pato bravo", "Alpinista", "Novo-rico"],
+				"upper_class": ["Donos-disto-tudo", "Ricalhaço", "Fidalgo", "Afidalgado", "Senhoreca", "Tinhoso", "Somítico", "Sovina"],
+				"working_class": ["Proletário", "Proletariado",	"Bimbo", "Bimba", "Labrego", "Pacóvio", "Pacóvia", "Parolo", "Parola", "Patego", "Pimba", "Grunho", "Grunha",  "Bronco", "Bronca", "Casca grossa", "Analfabeto", "Analfabeta",  "Mulherzinha", "Mulher do solheiro", "Rasca", "Rústico"],
+				"destitute": ["Pedinte", "Piolhoso", "Piolhosa", "Pobretana", "Sem-eira-nem-beira", "Vagabundo", "Zé-ninguém"]
+			},
+			"en":{
+				"social_class": ["classim","aporophobia","social climber","nouveau riche"],
+				"upper_class":[],
+				"working_class": ["bumpkin","country bumpkin","hillbilly","hillbilly bumpkin","pikey","pikie","redneck","trailer trash","white trash","yokel","chav","cheesy","common","coarse","tacky","unrefined"],
+				"destitute":["bum","vagrant","havenot","outcast","underdog"]
+			}
+		}
+
+	},
+
+	{
+		"type_prejudice": "Homophobia",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"sexual_identity": ["Homofobia", "Gay", "LGBT",	"Homoerótico", "Homofóbico", "Homossexual"],
+				"male_homossexuality": ["Abichanado", "Amaneirado", "Bicha", "Bichona", "Efeminado", "Larilas", "Maricas", "Maricão", "Mariconço", "Pan*sca", "Paneleiro", "Rabeta", "Roto", "Bicharia", "Maricote", "Paneleiragem"],
+				"female_homossexuality": ["Fufa", "Machona", "Maria-rapaz", "Matrafona", "Lambe conas"],
+				"transexuality": ["Trans","transsexual", "transgénero", "Travesti"]
+			},
+			"en":{
+				"sexual_identity": ["Homophobia","gay","queer","LGBT","homo","homophobic","homoerotic"],
+				"male_homossexuality":["gay","drag queen","Beta male","Effeminate","Fag","Faggot","fruit","fruitcake","girlie man","neck beard","pansy","sissy","twink"],
+				"female_homossexuality": ["Lesbian","Battle-axe","Butch woman","Dike","Tomboy"],
+				"transexuality": ["Trans","transsexual", "transgender", "transition","Tranny"]
+
+			}
+		}
+
+	},
+
+	{
+		"type_prejudice": "Anti-Clericalism",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"roman_catholic": ["Beato","Beata","Lambe-hóstias","Padreco","Padreca","Rato de sacristia"],
+				"christian": [],
+				"protestant": [],
+				"jewish": ["Fazer uma judiaria"],
+				"muslim": [],
+				"sikh": []
+			},
+			"en":{
+				"roman_catholic": ["Creeping Jesus","Left-footer","Mackerel Snapper","Mick","Papist","Taig"],
+				"christian": ["Fundie","Bible thumper","Bible beater","God botherer"],
+				"protestant":["Bible basher","Holly roller","Orangie","Snout","Prod","Proddy dog","Proddywoddy","Proddywhoddy","Russellite","Spike","Soup taker"],
+				"jewish": ["Abbie","Abe","Abie","Christ-killer","Ikey","Ike","Iky","Kike","Heeb","Hebe","Hymie","Ikeymo","Mocky","moky","moxy","mockey","mockie","mocky","Oven dodger","Sheeny","Shylock","Yid"],
+				"muslim": ["Asslifter","Carpet kisser","Goatfucker","Kebab","Koran basher","Koranimal","Mussie","Quran thumper","Koran thumper","Hajji","Haji","Hodgie","Mudslum","Muslimtard","Musloid","Muzrat","Pisslamist","Terrorist"],
+				"sikh": ["Raghead","Towelhead"]
+			}
+		}
+
+	},
+
+	{
+		"type_prejudice": "Body Shaming",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"physical_identity": [],
+				"physical_features":["Gordo","Gorda","Gorducho","Gorducha","Gordalhufo","Gordalhufa","Anafado","Baleia","Balofo","Balofa","Bola","Pipo","Obeso","Obesa","Rechonchudo","Rechonchuda","Pote de banhas","Anorético","Anorética","Magricela","Magro","Esqueleto","Ossudo","Ossuda","Pele e osso","Pau de virar tripas","Taco de bilhar","Caixa-de-óculos","Papadas","Careca"],
+				"physical_impairments":["Capacitismo","Eugenia","Cego","Cega","Surdo","Surda","Mudo","Muda","Gago","Gaga","Anã","Anão","Coxo","Coxa","Corcunda","Perneta","Maneta","Aleijado","Aleijada","Estropiado","Estropiada","Paralítico","Paralítica","Atrasado","Atrasada","Atrasado mental","Cretino","Cretina","Idiota","Imbecil","Lerdo","Lerda","Monga","Mongoloide","Pírulas","Passado dos carretos","Passada dos carretos"]
+			},
+			"en":{
+				"physical_identity":["Body Shaming"],
+				"physical_features":["Fat","Fatso","Fatty","Butterball","Chubby","Lardass","Lump","Obese","Porker","Thin","Bag-of-bones","Beanpole","Beanstalk","Bony","Skinny","Skin-and-bones","Scrawny","Scraggy","Twiggy","Double eyes","Double chin","Bald"],
+				"physical_impairments":["Ableism","Eugenics","Blind","Deaf","Dumb","Stutterer","Dwarf","Hunchback","Lame","Limp","Midget","Cripple","Disabled","Freak","Handicapped","Wheelchair bound","Bonkers","Crazy","Dim","Feeble-minded","Lunatic","Loony","Mental","Mong","Mongoloid","Nutter","Psycho","Retard","Spazz","Spazzie or Spastic","Weird","Weirdo","Window licker"]
+
+			}
+		}
+
+	},
+
+	{
+		"type_prejudice": "Addiction Shaming",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"behavioural_addictions": ["Viciado"],
+				"alcohol": ["Bêbado", "Bebedola", "Borrachola"],
+				"drug":["Drogado", "Ganzado", "Agarrado", "Pedrado"],
+				"pornography":[],
+				"sex": []
+			},
+			"en":{
+				"behavioural_addictions": [],
+				"alcohol": ["Drunkie"],
+				"drug":["Junkie", "Druggie", "Drug Addict"],
+				"pornography":[],
+				"sex": []
+			}
+		}
+
+	},
+
+	{
+		"type_prejudice": "Ideological Shaming",
+		"sociolinguistic_variables" : {
+			"pt":{
+				"ideologicalPoliticalIdentity":["Esquerdalho","Ser do reviralho","Carneirada","Revisa","Vermelho"]
+			},
+			"en":{
+				"ideologicalPoliticalIdentity":["Communist","Commie","Imperialist","Nazi","Looney Left","Red"]
+			}
+		}
+
+	}
+]

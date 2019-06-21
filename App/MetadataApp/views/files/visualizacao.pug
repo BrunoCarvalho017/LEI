@@ -1,0 +1,87 @@
+extends ../layout
+
+block content
+        header.w3-container(style="box-shadow: 0px 1px 6px grey")
+            h1 Ficheiro #{ficheiro.header.title}
+        .w3-container
+            h4 Informação
+            table.w3-section.w3-table
+                tr 
+                    td
+                        div(style=" border: 1px solid #ccc; border-radius: 10px !important;")
+                            table.w3-table
+                                if ficheiro.header.title 
+                                    tr
+                                        th Título 
+                                        td= ficheiro.header.title
+                                if ficheiro.header.subtitle
+                                    tr
+                                        th Subtítulo
+                                        td= ficheiro.header.subtitle
+                                tr
+                                    th Plataforma
+                                    td
+                                        | #{ficheiro.header.plataform}
+                                tr
+                                    th Tipo
+                                    td
+                                        if ficheiro.header.srcType
+                                            | #{ficheiro.header.srcType}
+                                        else
+                                            | N/A
+                                tr
+                                    th Views
+                                    td
+                                        if ficheiro.header.views
+                                            | #{ficheiro.views}
+                                        else 
+                                            | N/A
+                                if ficheiro.header.language
+                                    tr
+                                        th Linguagem
+                                        td= ficheiro.header.language
+                                tr
+                                    th Inserida por
+                                    td
+                                        if ficheiro.header.owner
+                                            | #{ficheiro.header.owner}
+                                        else 
+                                            | N/A
+                    td(style="vertical-align: middle;")
+                        .w3-center
+                            a(target='_blank' href="" ).w3-button.myFancyButton 
+                                i.fas.fa-download
+                                |  Descarregar Ficheiro
+            hr
+            h4 Comentários
+            table.w3-section(id="usersTable").w3-table.w3-table-all
+                if ficheiro.commentThread
+                            tr
+                                tr.w3-container.w3-border-top
+                                    th Utlizador
+                                    th Texto
+                                    th Likes
+                                    th Replies
+                            each c in ficheiro.commentThread
+                                tr.w3-container
+                                    td
+                                        if c.id
+                                            | #{c.user}
+                                        else
+                                            | N/A
+                                    td
+                                        if c.commentText
+                                            | #{c.commentText}
+                                        else 
+                                            | N/A
+                                    td
+                                        if c.likes
+                                            | #{c.likes}
+                                        else 
+                                            | N/A
+                                    td
+                                        if c.hasReplies
+                                            | #{c.hasReplies}
+                                        else 
+                                            | N/A
+            

@@ -80,39 +80,20 @@ router.post('/compile', (req, res) => {
 })
 
 router.get('/projeto',function(req,res,next){
-      res.render('projeto');
+      res.render('about/projeto');
 });
 
 router.get('/utilizar',function(req,res,next){
-  res.render('utilizar');
+  res.render('about/utilizar');
 });
 
 router.get('/grupo',function(req,res,next){
-  res.render('grupo');
+  res.render('about/grupo');
 });
-
-
 
 router.get('/getFiles/:tipo',function(req,res,next){
   var tipoEmURL = (req.params.tipo)
   res.render('fileSelect',{tipo: tipoEmURL});
-});
-
-router.get('/visualizacao/:id',function(req,res,next){
-  axios.get('http://localhost:3000/api/'+req.params.id)
-  .then(ficheiro => res.render('visualizacao', {ficheiro: ficheiro.data}))
-  .catch(erro => {
-      console.log('Erro na consulta do evento: ' + erro)
-      res.render('index')})
-});
-
-
-router.get('/listavisualizacao',function(req,res,next){
-  axios.get('http://localhost:3000/api/')
-  .then(ficheiro => res.render('listaderesults', {ficheiro: ficheiro.data}))
-  .catch(erro => {
-      console.log('Erro na consulta do evento: ' + erro)
-      res.render('index')})
 });
 
 module.exports = router;

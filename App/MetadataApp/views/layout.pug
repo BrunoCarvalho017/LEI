@@ -111,4 +111,28 @@ html
       }
       */
   body
+    div.w3-top
+      div.w3-bar.w3-white.w3-card
+        a(href='http://localhost:3001/').w3-bar-item.w3-button.w3-wide
+            i.fab.fa-keycdn.w3-large
+            br 
+            | Harambe
+        div.w3-right.w3-hide-small
+          a(href='http://localhost:3001/ficheiros').w3-bar-item.w3-button
+            i.fas.fa-search
+            br
+            |   Histórico de Análises
+          a(href='http://localhost:3001/users/getFiles/youtube').w3-bar-item.w3-button
+            i.fas.fa-file
+            br
+            |   Submeter Ficheiros
+          a(href='http://localhost:3001/users/utilizar').w3-bar-item.w3-button
+            i.fas.fa-info
+            br
+            |   Manual de atualização
+          a(href='http://localhost:3001/users/projeto').w3-bar-item.w3-button
+            i.fas.fa-users
+            br
+            | About
+          
     block content
