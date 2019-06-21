@@ -13,3 +13,5 @@ router.get('/:id',function(req, res) {
         .then(dados => res.jsonp(dados))
         .catch(erro => res.status(500).send("ERROR na consulta" + erro))
 });
+
+module.exports = router;
