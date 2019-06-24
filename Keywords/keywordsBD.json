@@ -9,7 +9,10 @@
 				"femaleIntelligence": ["Burra","Loura","Loira","boneca oca","vai pra cozinha","feminazi"]
 			},
 			"en":{
-
+				"gender": [],
+				"femaleAgeandPhysicalAppearance": [],
+				"femaleSexuality": [],
+				"femaleIntelligence": []
 			}
 		}
 	},

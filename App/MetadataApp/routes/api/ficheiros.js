@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var FicheirosController = require('../../controller/ficheiroController');
 
+
 router.get('/', function(req, res) {
     FicheirosController.listaFicheiros()
         .then(dados => res.jsonp(dados))
@@ -16,6 +17,8 @@ router.get('/:id', function(req, res) {
 
 router.post('/',function(req,res) {
     FicheirosController.addFicheiro()
-})
+});
+
+
 
 module.exports = router;

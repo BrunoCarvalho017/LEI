@@ -1,0 +1,58 @@
+extends ../layout
+
+block content
+    br
+    br
+    header.w3-container(style="box-shadow: 0px 1px 6px grey")
+        h1 Adicionar Keywords
+    br
+    br
+    br
+    .w3-container
+        .w3-display-bottommiddle(style="overflow: scroll; width: 101%; height: 90%; border: 0px solid grey;")
+            br
+            br
+            .w3-container
+                form.w3-container(method='POST' action="/keywords/:id/:id2")
+                    | Keyword:
+                    br
+                    input(type='text' name='firstname')
+                    br
+                    br
+                    label.radio-inline
+                        input(type='radio' name='gender' value='male' checked='')
+                        |  pt
+                        |
+                    label.radio-inline
+                        input(type='radio' name='gender' value='male' checked='')
+                        |  en
+                    br
+                    br
+                    input(type='submit' value='Submit')
+    br
+    br
+    br
+    br
+    table.w3-section.w3-table
+                tr 
+                    td
+                        div(style=" border: 1px solid #ccc; border-radius: 10px !important;")
+                            table.w3-table
+                                tr
+                                    th Variável Sociolinguistica
+                                    th Keywords
+                                    th Lingua
+                                    each f in keywordspt
+                                        for z,k in f.sociolinguistic_variables.pt
+                                            if k==aux
+                                                tr  
+                                                    td= k
+                                                    td= z
+                                                    td Português
+                                    each i in keywordsen
+                                        for l,o in i.sociolinguistic_variables.en
+                                            if o==aux
+                                                tr
+                                                    td= o
+                                                    td= l
+                                                    td Inglês

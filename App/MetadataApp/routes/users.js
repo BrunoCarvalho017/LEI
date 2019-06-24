@@ -144,4 +144,8 @@ router.get('/getFiles/:tipo',function(req,res,next){
   res.render('fileSelect',{tipo: tipoEmURL});
 });
 
+
+
+
+
 module.exports = router;
