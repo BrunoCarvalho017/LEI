@@ -58,4 +58,9 @@ router.post('/delete/:id', (req,res) =>{
         })
 });
 
+/* POST create a ficheiro */
+router.post('/', function(req, res) {
+})
+
+
 module.exports = router;

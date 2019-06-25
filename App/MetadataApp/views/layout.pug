@@ -21,6 +21,38 @@ html
       //option.text = document.getElementsByName("kw_field")[0].value;
       x.add(option);
       }
+      function addKwPT() {
+      var x = document.getElementById("select_pt");
+      var option = document.createElement("option");
+      option.text = document.getElementById("pt_field").value;
+      //option.text = document.getElementsByName("sv_field")[0].value;
+      x.add(option);
+
+      var myForm = document.getElementById('kw_form')
+      var hiddenInput = document.createElement('input')
+
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'pt_array[]';
+      hiddenInput.value = document.getElementById("pt_field").value;
+
+      myForm.appendChild(hiddenInput)
+      }
+      function addKwEN() {
+      var x = document.getElementById("select_en");
+      var option = document.createElement("option");
+      option.text = document.getElementById("en_field").value;
+      //option.text = document.getElementsByName("sv_field")[0].value;
+      x.add(option);
+
+      var myForm = document.getElementById('kw_form')
+      var hiddenInput = document.createElement('input')
+
+      hiddenInput.type = 'hidden';
+      hiddenInput.name = 'en_array[]';
+      hiddenInput.value = document.getElementById("en_field").value;
+
+      myForm.appendChild(hiddenInput)
+      }
       function removeOption() {
       var x = document.getElementById("mySelect");
       x.remove(x.selectedIndex);
@@ -120,6 +152,10 @@ html
             i.fas.fa-search
             br
             |  Analysis History
+          a(href='http://localhost:3001/keywords').w3-bar-item.w3-button
+            i.fas.fa-search
+            br
+            | Add Keywords
           a(href='http://localhost:3001/users/getFiles/youtube').w3-bar-item.w3-button
             i.fas.fa-file
             br
@@ -132,5 +168,4 @@ html
             i.fas.fa-users
             br
             | About
-          
     block content

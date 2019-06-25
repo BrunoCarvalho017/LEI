@@ -1,0 +1,64 @@
+extends ../layout
+
+block content
+    br
+    br
+    header.w3-container(style="box-shadow: 0px 1px 6px grey")
+        h1 Adicionar Keywords
+    br
+    br
+    br
+    .w3-container
+        .w3-display-bottommiddle(style="overflow: scroll; width: 101%; height: 90%; border: 0px solid grey;")
+            br
+            br
+            .row
+                .main
+                    form#kw_form.w3-container(method='POST' action="/keywords/"+aux1+"/"+aux2)
+                        .w3-row-padding
+                            .w3-half
+                                .label PT
+                                table.w3-section.w3-table(style="table-layout: fixed; width: 100%;")
+                                    tr 
+                                        td
+                                            div(style=" border: 1px solid #ccc; border-radius: 10px !important;")
+                                                table.w3-table(style="table-layout: fixed; width: 100%;")
+                                                    tr
+                                                        th Variável Sociolinguistica
+                                                        th Keywords
+                                                        each f in keywordspt
+                                                            for z,k in f.sociolinguistic_variables.pt
+                                                                if k==aux2
+                                                                    tr  
+                                                                        td(style='word-break:break-all;')= k
+                                                                        td 
+                                                                            select#select_pt
+                                                                                option(value='' selected='' disabled='' hidden='') Click here
+                                                                                for elem in z   
+                                                                                    option(value=elem) #{elem}
+                                input#pt_field.w3-input.w3-border(type='text' name="pt_field" placeholder='Add keyword or expression')
+                                button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addKwPT()') Add
+                            .w3-half
+                                .label EN
+                                table.w3-section.w3-table(style="table-layout: fixed; width: 100%;")
+                                    tr 
+                                        td
+                                            div(style=" border: 1px solid #ccc; border-radius: 10px !important;")
+                                                table.w3-table(style="table-layout: fixed; width: 100%;")
+                                                    tr
+                                                        th Variável Sociolinguistica
+                                                        th Keywords
+                                                        each i in keywordsen
+                                                            for l,o in i.sociolinguistic_variables.en
+                                                                if o==aux2
+                                                                    tr
+                                                                        td(style='word-break:break-all;')= o
+                                                                        td
+                                                                            select#select_en
+                                                                                option(value='' selected='' disabled='' hidden='') Click here
+                                                                                for elem in l   
+                                                                                    option(value=elem) #{elem}
+                                input#en_field.w3-input.w3-border(type='text' name="en_field" placeholder='Add keyword or expression')
+                                button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addKwEN()') Add
+                        hr
+                        input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submit')

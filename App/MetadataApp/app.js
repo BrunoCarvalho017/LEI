@@ -10,8 +10,15 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var ficheirosAPIRouter = require('./routes/api/ficheiros');
 var ficheirosRouter = require('./routes/ficheiros');
+var keywordsAPIRouter = require('./routes/api/keyword');
+var keywordsRouter = require('./routes/keywords');
+
 
 var app = express();
+
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
 
 // connect to mongoDB 
 mongoose.connect('mongodb://127.0.0.1:27017/harambe', {useNewUrlParser: true})
@@ -39,6 +46,8 @@ app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/api/ficheiros', ficheirosAPIRouter);
 app.use('/ficheiros', ficheirosRouter);
+app.use('/api/keywords', keywordsAPIRouter);
+app.use('/keywords', keywordsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

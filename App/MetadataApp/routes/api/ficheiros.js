@@ -8,6 +8,7 @@ router.get('/conta', (req, res) =>{
                 .catch(erro => res.status(500).send("ERROR na listagem" + erro))
 });
 
+
 router.get('/', function(req, res) {
     FicheirosController.listaFicheiros()
         .then(dados => res.jsonp(dados))
@@ -38,6 +39,11 @@ router.get('/download/:id', (req,res) =>{
                 .then(dados => {res.jsonp(dados)})
                 .catch(err => {res.status(500).jsonp(err)})
 });
+
+router.post('/',function(req,res) {
+    FicheirosController.addFicheiro()
+});
+
 
 
 module.exports = router;
