@@ -40,21 +40,25 @@ router.post('/submitMeta', (req,res) => {
     console.log(fields)
     //Construção da string que contém informação sobre keywords
     var keywords= ""
-    for(var i =0; i< metadata['kws'].length;i++){
-      if(i==0){
-        keywords+= metadata['kws'][i]
-      }else{
-        keywords+=", " + metadata['kws'][i]
+    if(metadata['kws']){
+      for(var i =0; i< metadata['kws'].length;i++){
+        if(i==0){
+          keywords+= metadata['kws'][i]
+        }else{
+          keywords+=", " + metadata['kws'][i]
+        }
       }
     }
 
     //Construção da string que contém informação sobre variaveis sociolingusiticas
     var socialVar = ""
-    for(var j =0; j< metadata['svs'].length;j++){
-      if(i==0){
-        socialVar+= metadata['svs'][j]
-      }else{
-        socialVar+=", " + metadata['svs'][j]
+    if(metadata['svs']){
+      for(var j =0; j< metadata['svs'].length;j++){
+        if(i==0){
+          socialVar+= metadata['svs'][j]
+        }else{
+          socialVar+=", " + metadata['svs'][j]
+        }
       }
     }
   

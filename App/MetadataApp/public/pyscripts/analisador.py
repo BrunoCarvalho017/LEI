@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 ##!/usr/local/bin/python3
 
+
+
 import json,sys,xlsxwriter,os,glob
 import re
 from fuzzywuzzy import fuzz
@@ -239,9 +241,7 @@ def excelWriter(var_sociolsPost,nComents,totais,worksheetName,workbook, file_nam
 		counter+=1
 
 
-	worksheet.merge_range('G4:G'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)
-
-	print('terminei')	
+	worksheet.merge_range('G4:G'+str(total_linhas+3),str(total_linhas)+'/'+str(nComents),pre)	
 
 #Função que desmembra o array var_sociolsPost em prejsKW 
 # (array que representa as keywords por preconceito) 
@@ -255,7 +255,6 @@ def kwNprej(var_sociolsPost):
 				for item in ocur:
 					if item[0] not in prejsKW[prej]:
 						prejsKW[prej].append(item[0])
-	#print(prejsKW)
 	return prejsKW
 
 #Função de criação do objeto JSON
@@ -283,7 +282,7 @@ def jsonMetadataWriter(var_sociolsPost):
 		for elem in value:
 			json_obj['kws'].append(elem)
 	
-	print(json_obj)
+	##print(json_obj)
 	with open('metadata.json', 'w') as outfile:  
 		json.dump(json_obj, outfile, indent=4, ensure_ascii=False)
 
@@ -306,7 +305,6 @@ def main():
 
 	counter = 0
 	
-	print('A analisar ficheiro.....')
 	##Fazer análise do ficheiro escolhido
 	print(file_path)
 
