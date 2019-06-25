@@ -1,8 +1,11 @@
 extends ../layout
 
 block content
-        header.w3-container(style="box-shadow: 0px 1px 6px grey")
-            h1 Ficheiro #{ficheiro.header.title}
+        br
+        br
+        br
+        header.w3-container(style="box-shadow: 0px 1px 6px grey").w3-blue
+            h1 #{ficheiro.header.title}
         .w3-container
             h4 Informação
             table.w3-section.w3-table
@@ -12,56 +15,92 @@ block content
                             table.w3-table
                                 if ficheiro.header.title 
                                     tr
-                                        th Título 
+                                        th Title 
                                         td= ficheiro.header.title
                                 if ficheiro.header.subtitle
                                     tr
-                                        th Subtítulo
+                                        th Subtitle
                                         td= ficheiro.header.subtitle
                                 tr
-                                    th Plataforma
+                                    th Plataform
                                     td
                                         | #{ficheiro.header.plataform}
                                 tr
-                                    th Tipo
+                                    th Source Type
                                     td
                                         if ficheiro.header.srcType
                                             | #{ficheiro.header.srcType}
                                         else
                                             | N/A
                                 tr
+                                    th URL
+                                    td
+                                        if ficheiro.header.url
+                                            | #{ficheiro.header.url}
+                                        else 
+                                            | N/A
+                                tr
                                     th Views
                                     td
                                         if ficheiro.header.views
-                                            | #{ficheiro.views}
+                                            | #{ficheiro.header.views}
                                         else 
                                             | N/A
                                 if ficheiro.header.language
                                     tr
-                                        th Linguagem
+                                        th Language
                                         td= ficheiro.header.language
                                 tr
-                                    th Inserida por
+                                    th Owner
                                     td
                                         if ficheiro.header.owner
                                             | #{ficheiro.header.owner}
                                         else 
                                             | N/A
+                                tr
+                                    th Likes
+                                    td
+                                        if ficheiro.header.likes
+                                            | #{ficheiro.header.likes}
+                                        else 
+                                            | N/A
+                                tr
+                                    th Dislikes
+                                    td
+                                        if ficheiro.header.dislikes
+                                            | #{ficheiro.header.dislikes}
+                                        else 
+                                            | N/A
+                                tr
+                                    th Sociolinguistic Variables
+                                    td
+                                        if ficheiro.header.socioLingVar
+                                            | #{ficheiro.header.socioLingVar}
+                                        else 
+                                            | N/A
+                                tr
+                                    th Keywords
+                                    td
+                                        if ficheiro.header.keywords
+                                            | #{ficheiro.header.keywords}
+                                        else 
+                                            | N/A
                     td(style="vertical-align: middle;")
                         .w3-center
-                            a(target='_blank' href="" ).w3-button.myFancyButton 
+                            a(target='_blank' href="http://localhost:3001/ficheiros/download/"+ficheiro._id ).w3-button.myFancyButton 
                                 i.fas.fa-download
-                                |  Descarregar Ficheiro
+                                |  Download File
             hr
-            h4 Comentários
-            table.w3-section(id="usersTable").w3-table.w3-table-all
+            h4 Comments
+            table.w3-section(id="commentsTable").w3-table.w3-table-all
                 if ficheiro.commentThread
                             tr
                                 tr.w3-container.w3-border-top
-                                    th Utlizador
-                                    th Texto
-                                    th Likes
+                                    th User
+                                    th Comment
+                                    th Has Keywords
                                     th Replies
+                                    th Comment ID
                             each c in ficheiro.commentThread
                                 tr.w3-container
                                     td
@@ -75,13 +114,43 @@ block content
                                         else 
                                             | N/A
                                     td
-                                        if c.likes
-                                            | #{c.likes}
-                                        else 
-                                            | N/A
+                                            | #{c.hasKW}
                                     td
                                         if c.hasReplies
                                             | #{c.hasReplies}
                                         else 
-                                            | N/A
+                                            | #{false}
+                                    td
+                                        if c.hasReplies
+                                            | #{c.id}
+                                        else 
+                                            | #{indeed}
+            hr
+            h4 Replies
+            table.w3-section(id="repliesTable").w3-table.w3-table-all
+                if ficheiro.commentThread
+                            tr
+                                tr.w3-container.w3-border-top
+                                    th User
+                                    th Response
+                                    th Has Keywords
+                                    th Comment ID
+                            each tes in ficheiro.commentThread
+                                if tes.hasReplies
+                                    each b in tes.replies
+                                        tr.w3-container
+                                            td
+                                                if b.user
+                                                    | #{b.user}
+                                                else
+                                                    | N/A
+                                            td
+                                                if b.commentText
+                                                    | #{b.commentText}
+                                                else 
+                                                    | N/A
+                                            td
+                                                | #{b.hasKW}
+                                            td
+                                                | #{tes.id}
             

@@ -2,12 +2,26 @@ extends layout
 
 block content
   .w3-container.w3-orange
-    header.w3-panel.w3-center.w3-opacity(style={padding:'128px 16px'})
+    header.w3-panel.w3-center.w3-opacity(style={padding:'100px 16px'})
       br
       br
-      h1.w3-xlarge Construção Metadados
-      h1 Net-Lang
+      h1.w3-jumbo(style="text-shadow:1px 1px 0 #444") Metadata Construction
+      h3 Net-Lang
     br
     br
     br
     br
+  .w3-container.w3-display-bottom.w3-center
+    br
+    br
+    br
+    .w3-container.w3-center
+        a.w3-margin(href="http://localhost:3001/users/download/tool").w3-button.w3-orange.w3-round-xlarge
+          p 
+            i.fas.fa-download  Download
+    br
+    br
+    .w3-container.w3-center
+      h3 Since the web application only accepts JSON format files, you can download the tool provided by the group.
+      h3 This tool allows you to convert CSV format files to JSON format files.
+      h3 To use the tool, simply run the PYTHON program that will be supplied by passing the CSV file you want to convert as an argument.

@@ -8,7 +8,7 @@ block content
         br
         br
         form(method='POST' action="/users/compile" enctype='multipart/form-data')
-          input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro')
+          input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro' required)
           input(type="hidden" name="tipo" value=tipo)
           br
           input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submeter')

@@ -37,6 +37,21 @@ block content
 
         .w3-panel.w3-padding
           label.w3-text
+            b Title
+          input.w3-input(type='text' name="title")
+
+        .w3-panel.w3-padding
+          label.w3-text
+            b Subtitle
+          input.w3-input(type='text' name="subtitle")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Owner
+          input.w3-input(type='text' name="owner")
+        
+        .w3-panel.w3-padding
+          label.w3-text
             b CMC Source Text Type
           input.w3-input(type='text' name="cmc")
         
@@ -60,18 +75,14 @@ block content
         
         .w3-panel.w3-padding
           label.w3-text
-            b Title Type
-          input.w3-input(type='text' name="title_type")
+            b Source Type
+          input.w3-input(type='text' name="source_type")
         
         .w3-panel.w3-padding
           label.w3-text
-            b URL Type
-          input.w3-input(type='text' name="url_type")
+            b URL
+          input.w3-input(type='text' name="url")
         
-        .w3-panel.w3-padding
-          label.w3-text
-            b Setting
-          input.w3-input(type='text' name="setting")
         
         .w3-panel.w3-padding
           label.w3-text
@@ -83,13 +94,9 @@ block content
         
         .w3-panel.w3-padding
           label.w3-text
-            b Extracted File Type
-          input.w3-input(type='text' name="extract_file_type")
+            b Post Text
+          input.w3-input(type='text' name="post_text")
         
-        .w3-panel.w3-padding
-          label.w3-text
-            b Source Type
-          input.w3-input(type='text' name="source_type")
       
         .w3-panel.w3-padding
           label.w3-text
@@ -101,9 +108,12 @@ block content
             .w3-half
               input.w3-radio(type='radio' name='cpo' value='yes')
               | No
+          input.w3-input(type='hidden' name='ficheiro' value=ficheiro)
+
         input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submit')
     .side
         h3.w3-center Resultados Do Analisador
         .w3-container
           each print in prints
-            p #{print}   
+            .w3-panel.w3-pale-blue.w3-leftbar.w3-rightbar.w3-border-blue
+              p #{print}   

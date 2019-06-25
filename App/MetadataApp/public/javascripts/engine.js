@@ -41,4 +41,29 @@ $(()=>{
         })
         $('#ficheiro').val('')
     }
+
+    /* Para remover um evento */
+    $('.buttonRemoveFicheiro').click(function(e){
+        e.preventDefault()
+        if (confirm('De certeza que pretende eliminar este evento?'))
+            ajaxDeleteFicheiro($(this))
+    })
+
+    function ajaxDeleteFicheiro(element) {
+        var url = element.attr('href')
+        $.ajax({
+            url: url,
+            type: 'POST',
+            success: () =>{
+                element.closest('tr').remove()
+            }
+        })
+    }
+
+    $("#searchFicheiros").on("keyup", function() {
+        var value = $(this).val().toLowerCase();
+        $("#ficheirosTable tr").filter(function() {
+            $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        });
+    });
 })

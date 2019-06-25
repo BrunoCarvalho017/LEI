@@ -1,7 +1,7 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
-var ReplieSchema = new Schema (
+/*var ReplieSchema = new Schema (
     {
         id:{type:String,required:true},
         user:{type:String,required:true},
@@ -15,10 +15,9 @@ var ComentarioSchema = new Schema (
         commentText:{type:String,required: true},
         hasReplies:{type:Boolean,required: true},
         replies:{type:[ReplieSchema],required:false}
-    }
-)
+    })
 
-var FicheiroSchema = new Schema (
+ var FicheiroSchema = new Schema (
     {
         title:{type: String, required: true},
         plataform: {type: String, required: true},
@@ -27,7 +26,11 @@ var FicheiroSchema = new Schema (
         keywords:{type: String, required: true},
         socioLingVar:{type: String, required: true},
         comments:{type:[ComentarioSchema],required:true}
-    }
+    }*/
+var FicheiroSchema = new Schema (
+    
+        {},{strict: false}
+
 )
 
 

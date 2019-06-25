@@ -14,22 +14,27 @@ FicheiroController.listaFicheiros = () => {
                                "header.url":1,
                                "header.srcType":1,
                                "header.keywords":1,
-                               "header.id":1,
+                               "_id":1,
                                "header.dateExtraction":1,
                                "header.datePosted":1,
                                "header.plataform":1,
                              })
-                        .sort({"header.title":-1})
                         .exec()
 }
 
 FicheiroController.getFicheiroById = (id) => {
-    return FicheiroModel.findOne({"header.id": id})
+    return FicheiroModel.findOne({_id: id})
                         .exec()
 }
 
-FicheiroController.addFicheiro = (ficheiro) => {
-    return FicheiroModel.create(ficheiro)
+//Esta função está funcional
+FicheiroController.getFicheiroCount = () => {
+    return FicheiroModel.countDocuments()
+                        .exec()
+}
+
+FicheiroController.addFicheiro = (obj) => {
+    return FicheiroModel.create(obj)
 }
 
 FicheiroController.removeFicheiro = (id) => {

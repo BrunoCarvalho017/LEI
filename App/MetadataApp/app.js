@@ -18,16 +18,15 @@ mongoose.connect('mongodb://127.0.0.1:27017/harambe', {useNewUrlParser: true})
         .then(()=> {console.log('Mongo: Conexão efetuada (status: ' + mongoose.connection.readyState + ')')})
         .catch(()=> {console.log('Mongo: Erro na conexão')})
 
-app.use(bodyParser.urlencoded({
-          extended: true
-}));
-
 
 app.disable('etag');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
+
+app.use(bodyParser.json({ limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
 
 app.use(logger('dev'));
 app.use(express.static('public/images'));
