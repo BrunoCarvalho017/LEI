@@ -46,7 +46,7 @@
 				"asianSouth": ["Monhé", "Chamuça","Chamuças", "Betadine"],
 				"black": ["Preto","Preta","Negro","Negra","Africano","Africana","Macaco","Macaca","Escarumba","Conguito"],
 				"jewish": [],
-				"native-American": ["Índio","Vermelho","Pele Vermelha"],
+				"native_American": ["Índio","Vermelho","Pele Vermelha"],
 				"roma": ["Cigano","Boémio","Calon","Calé","Caló","Gitano","Quico","Lelo","Lela"],
 				"white": ["Branco","Cara-pálida","Gajo","Javalis lusitanos"]
 			},
@@ -172,7 +172,7 @@
 	},
 
 	{
-		"type_prejudice": "Body Shaming",
+		"type_prejudice": "Body-Shaming",
 		"sociolinguistic_variables" : {
 			"pt":{
 				"physical_identity": [],
@@ -190,7 +190,7 @@
 	},
 
 	{
-		"type_prejudice": "Addiction Shaming",
+		"type_prejudice": "Addiction-Shaming",
 		"sociolinguistic_variables" : {
 			"pt":{
 				"behavioural_addictions": ["Viciado"],
@@ -211,7 +211,7 @@
 	},
 
 	{
-		"type_prejudice": "Ideological Shaming",
+		"type_prejudice": "Ideological-Shaming",
 		"sociolinguistic_variables" : {
 			"pt":{
 				"ideologicalPoliticalIdentity":["Esquerdalho","Ser do reviralho","Carneirada","Revisa","Vermelho"]

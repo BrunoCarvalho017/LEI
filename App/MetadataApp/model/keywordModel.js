@@ -1,14 +1,8 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema
 
-
-
-
-
 var KeywordSchema = new Schema (
-    {
-        type_prejudice:{type: String, required: true},
-    }
+    {}, { strict: false }
 )
 
 

@@ -16,6 +16,10 @@ var keywordsRouter = require('./routes/keywords');
 
 var app = express();
 
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
+mongoose.set('useCreateIndex', true);
+
 // connect to mongoDB 
 mongoose.connect('mongodb://127.0.0.1:27017/harambe', {useNewUrlParser: true})
         .then(()=> {console.log('Mongo: Conexão efetuada (status: ' + mongoose.connection.readyState + ')')})

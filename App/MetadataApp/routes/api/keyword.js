@@ -15,13 +15,7 @@ router.get('/:id', function(req, res) {
         .catch(erro => res.status(500).send("ERROR na listagem" + erro))
 });
 
-router.post('/:id/:id2', function(req, res) {
-    KeywordsController.adicionaKeyword("Olha",req.params.id2,"en")
-        .then(dados => res.jsonp(dados))
-        .catch(erro => res.status(500).send("ERROR na listagem" + erro))
-});
-
-router.get('/:id/:id2', function(req, res) {
+router.get('/:id/:id2/pt', function(req, res) {
     KeywordsController.getKeywordByIdPt(req.params.id)
         .then(dados => res.jsonp(dados))
         .catch(erro => res.status(500).send("ERROR na listagem" + erro))
@@ -33,9 +27,11 @@ router.get('/:id/:id2/en', function(req, res) {
         .catch(erro => res.status(500).send("ERROR na listagem" + erro))
 });
 
-
-
-
-
+router.post('/:id/:id2', function(req, res) {
+    console.log(req)
+    KeywordsController.adicionaKeyword(req.params,req.body)
+    .then(dados=> res.jsonp(dados))
+    .catch(erro=> res.status(500).send('Erro na inserção [KEYWORDS]: ' + erro));
+});
 
 module.exports = router;

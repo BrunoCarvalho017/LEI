@@ -10,7 +10,7 @@ block content
     .w3-container
         .w3-display-bottommiddle(style="overflow: scroll; width: 101%; height: 90%; border: 0px solid grey;")
             br
-            input( id="searchObras" type="text" placeholder="Procurar...").w3-input.w3-margin
+            br
             .w3-container
                 table( id="obrasTable").w3-table.w3-table-all
                     each f in keywords
@@ -25,5 +25,3 @@ block content
                                 .w3-display-right
                                     a.w3-margin(href="http://localhost:3001/keywords/" + f.type_prejudice)
                                         i.fas.fa-eye
-                                    a.w3-margin(class="", href="")
-                                        i.fas.fa-trash-alt

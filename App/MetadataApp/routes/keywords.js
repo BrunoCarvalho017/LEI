@@ -27,11 +27,11 @@ router.get('/:id', function(req, res) {
 
 router.get('/:id/:id2', function(req, res) {
     axios.all([
-        axios.get('http://localhost:3001/api/keywords/'+req.params.id +'/'+ req.params.id2),
+        axios.get('http://localhost:3001/api/keywords/'+req.params.id +'/'+ req.params.id2 + '/pt'),
         axios.get('http://localhost:3001/api/keywords/'+req.params.id +'/'+ req.params.id2 + '/en')
       ])
     .then(axios.spread(function (pt, en) {
-        res.render('keywords/adicionarkey', {keywordspt : pt.data , keywordsen : en.data ,  aux : req.params.id2})
+        res.render('keywords/adicionarkey', {keywordspt : pt.data , keywordsen : en.data ,  aux1 : req.params.id , aux2 : req.params.id2})
     }))
     .catch(err => {
         res.render('error', {error:err})
@@ -40,13 +40,12 @@ router.get('/:id/:id2', function(req, res) {
 
 
 router.post('/:id/:id2', function(req, res) {
-    axios.post('http://localhost:3001/api/keywords/ '+req.params.id +'/'+ req.params.id2)
-    .then(Keywords => {
-        res.render('keywords/', {keywords: Keywords.data})
-    })
+    axios.post('http://localhost:3001/api/keywords/'+req.params.id +'/'+ req.params.id2, req.body)
+    .then(()=> res.redirect('http://localhost:3001/'))
     .catch(err => {
-       res.render('error', {error:err})
-   })
+        console.log('Erro na inserção [Keyword]')
+        res.render('error', {error:err})
+    })
 });
 
 
