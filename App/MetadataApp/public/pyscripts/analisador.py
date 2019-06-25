@@ -8,6 +8,7 @@ import re
 from fuzzywuzzy import fuzz
 from fuzzywuzzy import process
 import pymongo
+import time
 
 #class Post:
 	#def __init__(newObject,postid,arrayComments,ocur):
@@ -258,7 +259,7 @@ def kwNprej(var_sociolsPost):
 	return prejsKW
 
 #Função de criação do objeto JSON
-def jsonMetadataWriter(var_sociolsPost):
+def jsonMetadataWriter(var_sociolsPost,csv_name):
 	json_obj = {
 		"fname":"",
 		"cmc":"",
@@ -273,7 +274,8 @@ def jsonMetadataWriter(var_sociolsPost):
 		"kws":[],
 		"extract_file_type":"",
 		"source_type":"",
-		"cpo":""
+		"cpo":"",
+		"csv":csv_name
 	}
 	prejsKW = kwNprej(var_sociolsPost)
 	
@@ -300,8 +302,10 @@ def main():
 	for x in mycol.find():
 		kw_inventory.append(x)
 
+	localtime = time.localtime(time.time())
+	csv_name =  str(localtime.tm_year) + str(localtime.tm_mon) + str(localtime.tm_mday) + str(localtime.tm_hour) + str(localtime.tm_min) + str(localtime.tm_sec) 
 	# criação do xslx
-	workbook = xlsxwriter.Workbook('resultado.xlsx')
+	workbook = xlsxwriter.Workbook("./public/exports/" + csv_name + ".xlsx")
 
 	counter = 0
 	
@@ -316,7 +320,7 @@ def main():
 	printOcurrencias(var_sociolsPost)
 	totais = getPostOcur(var_sociolsPost)
 	
-	jsonMetadataWriter(var_sociolsPost)
+	jsonMetadataWriter(var_sociolsPost,csv_name)
 
 	nComents = len(comentarios)
 	excelWriter(var_sociolsPost, nComents, totais, f"sheet{counter}", workbook, file_path)

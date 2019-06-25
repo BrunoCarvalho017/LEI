@@ -112,13 +112,14 @@ block content
 
         input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submit')
     .side
-        h3.w3-center Resultados Do Analisador
+        h3.w3-center Analyzer Results
+        .w3-center
+            a(target='_blank' href="http://localhost:3001/users/download/csv/"+csv).w3-button.myFancyButton 
+                i.fas.fa-download
+                |  Download Stats CSV  
         .w3-container
           each print in prints
             .w3-panel.w3-pale-blue.w3-leftbar.w3-rightbar.w3-border-blue
               p #{print}   
-        .w3-center
-            a(target='_blank' href="" ).w3-button.myFancyButton 
-                i.fas.fa-download
-                |  Descarregar Ficheiro  
+        
 

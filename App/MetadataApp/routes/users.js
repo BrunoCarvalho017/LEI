@@ -136,7 +136,7 @@ router.post('/compile', (req, res) => {
                     if(valid){
                       let options = {
                         mode: 'text',
-                        pythonPath: '/usr/local/bin/python3',
+                        pythonPath: '/usr/bin/python3',
                         pythonOptions: ['-u'], // get print results in real-time
                         scriptPath: './public/pyscripts',
                         args: [fnovo]
@@ -150,7 +150,7 @@ router.post('/compile', (req, res) => {
                           let rawdata = fs.readFileSync('metadata.json');  
                           metadata = JSON.parse(rawdata);  
                           console.log(metadata)
-                          res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs, ficheiro:fnovo});
+                          res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs, ficheiro:fnovo, csv:metadata.csv});
                         }
                         else{
                           console.log("Erro no analisador")
@@ -209,6 +209,13 @@ router.get('/download/tool', (req,res)=>{
     res.download(filePath, function(err) {
         console.log(err)
     });
+});
+
+router.get('/download/csv/:id', (req,res)=>{
+  const filePath = path.join(__dirname, "..", "public", "exports", req.params.id+".xlsx") 
+  res.download(filePath, function(err) {
+      console.log(err)
+  });
 });
 
 
