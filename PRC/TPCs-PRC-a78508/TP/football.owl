@@ -1,0 +1,206 @@
+@prefix : <http://www.prc.di.uminho.pt/football#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.prc.di.uminho.pt/football> .
+
+<http://www.prc.di.uminho.pt/football> rdf:type owl:Ontology .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.prc.di.uminho.pt/football#hasClassification
+:hasClassification rdf:type owl:ObjectProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#hasGame
+:hasGame rdf:type owl:ObjectProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#hasPlayer
+:hasPlayer rdf:type owl:ObjectProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#hasRound
+:hasRound rdf:type owl:ObjectProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#hasSeason
+:hasSeason rdf:type owl:ObjectProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#hasSquad
+:hasSquad rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://www.prc.di.uminho.pt/football#away_goals
+:away_goals rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#away_team
+:away_team rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#birth_date
+:birth_date rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#birth_place
+:birth_place rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#classification
+:classification rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#conceded_goals
+:conceded_goals rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#draws
+:draws rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#height
+:height rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#home_goals
+:home_goals rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#home_team
+:home_team rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#id
+:id rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#jersey_number
+:jersey_number rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#losses
+:losses rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#name
+:name rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#nationality
+:nationality rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#points
+:points rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#position
+:position rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#scored_goals
+:scored_goals rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#season
+:season rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#short_name
+:short_name rdf:type owl:DatatypeProperty .
+
+
+###  http://www.prc.di.uminho.pt/football#wins
+:wins rdf:type owl:DatatypeProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.prc.di.uminho.pt/football#Classification
+:Classification rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Competition
+:Competition rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Game
+:Game rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Player
+:Player rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Round
+:Round rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Season
+:Season rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Squad
+:Squad rdf:type owl:Class .
+
+
+###  http://www.prc.di.uminho.pt/football#Team
+:Team rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.prc.di.uminho.pt/football#dst
+:dst rdf:type owl:NamedIndividual ,
+              :Team ;
+     :hasSquad :dst2017 ;
+     :name "Dar Sempre Tudo" ;
+     :short_name "DST" .
+
+
+###  http://www.prc.di.uminho.pt/football#dst2017
+:dst2017 rdf:type owl:NamedIndividual ,
+                  :Squad ;
+         :hasPlayer :narquinhos .
+
+
+###  http://www.prc.di.uminho.pt/football#narquinhos
+:narquinhos rdf:type owl:NamedIndividual ,
+                     :Player ;
+            :birth_date "06/01/1997" ;
+            :birth_place "Cervães" ;
+            :height 182 ;
+            :id "merdas" ;
+            :jersey_number 88 ;
+            :name "Fábio Araújo" ;
+            :nationality "Portugal" ;
+            :position "Defesa Central" .
+
+
+###  http://www.prc.di.uminho.pt/football#trofeuReitor
+:trofeuReitor rdf:type owl:NamedIndividual ,
+                       :Competition ;
+              :hasSeason :trofeuReitorSeason18 .
+
+
+###  http://www.prc.di.uminho.pt/football#trofeuReitorSeason18
+:trofeuReitorSeason18 rdf:type owl:NamedIndividual ,
+                               :Season ;
+                      :hasSquad :dst2017 .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

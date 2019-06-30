@@ -1,0 +1,1 @@
+Devido à presença de caracteres especiais em alguns dos valores associados as data-properties "overallMotivation" e "motivation", estas encontram-se com valor vazio na ontologia
