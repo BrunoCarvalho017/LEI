@@ -1,2 +1,0 @@
-Falta definir as classes, data properties e object properties 
-Falta associar as object properties aos individuals
