@@ -10,3 +10,6 @@ XDG_CACHE_HOME
 App/MetadataApp/cenas.txt
 BD/
 .DS_Store
+PRC/TPCs-PRC-a78508/tpc7/cinema/node_modules
+PRC/TPCs-PRC-a78508/TP/footballvue/node_modules
+PRC/TPCs-PRC-a78508/tpc6/venv
