@@ -136,7 +136,7 @@ router.post('/compile', (req, res) => {
                     if(valid){
                       let options = {
                         mode: 'text',
-                        pythonPath: '/usr/bin/python3',
+                        pythonPath: '/usr/local/bin/python3',
                         pythonOptions: ['-u'], // get print results in real-time
                         scriptPath: './public/pyscripts',
                         args: [fnovo]
