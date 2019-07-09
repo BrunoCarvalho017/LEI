@@ -20,21 +20,34 @@ router.post('/convert/file', function(req, res, next) {
         var fenviado = files.ficheiro.path
   
         var fnovo = './public/uploaded/'+files.ficheiro.name
+        console.log("POST [fenviado]:"+fenviado)
         console.log("POST [fnovo]:"+fnovo)
 
         fs.rename(fenviado, fnovo, erro => {
           if(!erro){
             let options = {
               mode: 'text',
-              pythonPath: '/usr/local/bin/python3',
+              pythonPath: '/usr/bin/python3',
               pythonOptions: ['-u'], // get print results in real-time
               scriptPath: './public/pyscripts',
               args: [fnovo]
             };
-            PythonShell.run('analisador.py', options, function (err, results) {
+            PythonShell.run('forJSON-v2.py', options, function (err, results) {
               if (!err) {
                 console.log('results: %j', results);
-                res.download();
+                res.download(results[0], function (err) {
+                  if (err) {
+                    // Handle error, but keep in mind the response may be partially-sent
+                    // so check res.headersSent
+                  } else {
+                    // decrement a download credit, etc.
+                    //file remove
+                    fs.unlink(results[0], function (err) {
+                      if (err) throw err;
+                      console.log('File deleted!');
+                    });
+                  }
+                })
               }
               else{
                 console.log("Erro no tranformador")
@@ -42,7 +55,7 @@ router.post('/convert/file', function(req, res, next) {
               }
             });
           }else{
-            console.log("ERRO")
+            console.log("ERRO no rename")
           }
         })
     })
