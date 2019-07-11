@@ -91,7 +91,9 @@ block content
                                 i.fas.fa-download
                                 |  Download File
             hr
-            h4 Comments
+            h4
+                i.fas.fa-comments 
+                |   Comments
             table.w3-section(id="commentsTable").w3-table.w3-table-all
                 if ficheiro.commentThread
                             tr
@@ -121,36 +123,40 @@ block content
                                         else 
                                             | #{false}
                                     td
-                                        if c.hasReplies
-                                            | #{c.id}
+                                        if c.hasReplies 
+                                            a(href="#"+c.id) #{c.id}
                                         else 
                                             | #{indeed}
             hr
-            h4 Replies
-            table.w3-section(id="repliesTable").w3-table.w3-table-all
-                if ficheiro.commentThread
-                            tr
-                                tr.w3-container.w3-border-top
-                                    th User
-                                    th Response
-                                    th Has Keywords
-                                    th Comment ID
-                            each tes in ficheiro.commentThread
-                                if tes.hasReplies
-                                    each b in tes.replies
-                                        tr.w3-container
-                                            td
-                                                if b.user
-                                                    | #{b.user}
-                                                else
-                                                    | N/A
-                                            td
-                                                if b.commentText
-                                                    | #{b.commentText}
-                                                else 
-                                                    | N/A
-                                            td
-                                                | #{b.hasKW}
-                                            td
-                                                | #{tes.id}
+            h4 
+                i.fas.fa-reply 
+                |   Replies
+            each tes in ficheiro.commentThread
+                if tes.hasReplies
+                    h4(id=tes.id) To Comment_id: #{tes.id} 
+                    table.w3-section(id="repliesTable").w3-table.w3-table-all
+                        tr
+                            tr.w3-container.w3-border-top
+                                th User
+                                th Response
+                                th Has Keywords
+                                th Comment ID
+                        each b in tes.replies
+                            if ficheiro.commentThread
+                                    tr.w3-container
+                                        td
+                                            if b.user
+                                                | #{b.user}
+                                            else
+                                                | N/A
+                                        td
+                                            if b.commentText
+                                                | #{b.commentText}
+                                            else 
+                                                | N/A
+                                        td
+                                            | #{b.hasKW}
+                                        td
+                                            | #{tes.id}
+                    br
             

@@ -20,7 +20,7 @@ block content
           .w3-half
             .label Sociolinguistic Variables
             each sv in svs
-              input(type='checkbox' name='featured_svs[]' value=sv)
+              input(type='checkbox' name='featured_svs[]' value=sv checked)
               | #{sv} 
             br
             input#sv_field.w3-input.w3-border(type='text' name="sv_field" placeholder='Add sociolinguistic variable')
@@ -28,7 +28,7 @@ block content
           .w3-half
             .label Keywords and Expressions
             each kw in kws
-              input(type='checkbox' name='featured_kws[]' value=kw)
+              input(type='checkbox' name='featured_kws[]' value=kw checked)
               | #{kw} 
             br
             input#kw_field.w3-input.w3-border(type='text' name="kw_field" placeholder='Add keyword or expression')
@@ -52,8 +52,23 @@ block content
         
         .w3-panel.w3-padding
           label.w3-text
-            b CMC Source Text Type
-          input.w3-input(type='text' name="cmc")
+            b Views
+          input.w3-input(type='text' name="views")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Likes
+          input.w3-input(type='text' name="likes")
+
+        .w3-panel.w3-padding
+          label.w3-text
+            b Dislikes
+          input.w3-input(type='text' name="dislikes")
+
+        .w3-panel.w3-padding
+          label.w3-text
+            b Shares
+          input.w3-input(type='text' name="shares")
         
         .w3-panel.w3-padding
           label.w3-text
@@ -83,6 +98,15 @@ block content
             b URL
           input.w3-input(type='text' name="url")
         
+        .w3-panel.w3-padding
+          label.w3-text
+            b Name Newspaper
+          input.w3-input(type='text' name="subtitle")
+        
+        .w3-panel.w3-padding
+          label.w3-text
+            b Number of posts
+          input.w3-input(type='text' name="subtitle")
         
         .w3-panel.w3-padding
           label.w3-text
@@ -97,7 +121,6 @@ block content
             b Post Text
           input.w3-input(type='text' name="post_text")
         
-      
         .w3-panel.w3-padding
           label.w3-text
             b Comments Permanently Open

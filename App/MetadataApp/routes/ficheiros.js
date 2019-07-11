@@ -39,7 +39,17 @@ router.get('/download/:id', (req,res)=>{
                 }
                 else {
                     res.download(filePath, function(err) {
-                        console.log(err)
+                        if(err) {
+                            // Handle error, but keep in mind the response may be partially-sent
+                            // so check res.headersSent
+                        }else {
+                            // decrement a download credit, etc.
+                            //file remove
+                            fs.unlink(filePath, function (err) {
+                                if (err) throw err;
+                                console.log('File deleted!');
+                            });
+                        }
                     });
                 }
               });      
@@ -61,6 +71,5 @@ router.post('/delete/:id', (req,res) =>{
 /* POST create a ficheiro */
 router.post('/', function(req, res) {
 })
-
 
 module.exports = router;
