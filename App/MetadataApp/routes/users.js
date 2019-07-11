@@ -195,26 +195,25 @@ router.get('/utilizar',function(req,res,next){
   res.render('about/utilizar');
 });
 
-router.get('/grupo',function(req,res,next){
-  res.render('about/grupo');
-});
-
 router.get('/getFiles/:tipo',function(req,res,next){
   var tipoEmURL = (req.params.tipo)
   res.render('fileSelect',{tipo: tipoEmURL});
 });
 
-router.get('/download/tool', (req,res)=>{
-    const filePath = path.join(__dirname, "..", "public", "exports", "forJSON-v2.py") 
-    res.download(filePath, function(err) {
-        console.log(err)
-    });
-});
-
 router.get('/download/csv/:id', (req,res)=>{
   const filePath = path.join(__dirname, "..", "public", "exports", req.params.id+".xlsx") 
   res.download(filePath, function(err) {
-      console.log(err)
+    if (err) {
+      // Handle error, but keep in mind the response may be partially-sent
+      // so check res.headersSent
+    } else {
+      // decrement a download credit, etc.
+      //file remove
+      fs.unlink(filePath, function (err) {
+        if (err) throw err;
+        console.log('File deleted!');
+      });
+    }
   });
 });
 
