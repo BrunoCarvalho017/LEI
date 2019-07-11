@@ -24,5 +24,11 @@ block content
                                                         big #{i} 
                                     td.w3-display-container
                                         .w3-display-right
-                                            a.w3-margin(href=  '/keywords/'+  f.type_prejudice + '/' + i)
+                                            a.w3-margin(href=  '/keywords/'+  aux1 + '/' + i)
                                                 i.fas.fa-eye
+            br
+            br
+            .w3-container
+                form.w3-container(method='POST' action="/keywords/"+ aux1)
+                    input.w3-input.w3-border( name="socio" type="text" placeholder="Add Sociolinguistic Variable" )
+                    button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='Submit' value='Submit') Add

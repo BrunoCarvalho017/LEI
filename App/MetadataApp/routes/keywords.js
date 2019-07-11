@@ -16,12 +16,21 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
     axios.get('http://localhost:3001/api/keywords/'+req.params.id)
          .then(Keywords => {
-             res.render('keywords/sociolingual', {keywords: Keywords.data})
+             res.render('keywords/sociolingual', {keywords: Keywords.data, aux1: req.params.id})
          })
          .catch(err => {
             res.render('error', {error:err})
         })
 });
+
+router.post('/:id', function(req, res) {
+    axios.post('http://localhost:3001/api/keywords/'+req.params.id, req.body)
+    .then(()=> res.redirect('http://localhost:3001/keywords/' + req.params.id))
+    .catch(err => {
+        console.log('Erro na inserção [Keyword]')
+        res.render('error', {error:err})
+    })
+});   
 
 
 
