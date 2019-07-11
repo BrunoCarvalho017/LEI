@@ -27,7 +27,7 @@ router.post('/convert/file', function(req, res, next) {
           if(!erro){
             let options = {
               mode: 'text',
-              pythonPath: '/usr/bin/python3',
+              pythonPath: '/usr/local/bin/python3',
               pythonOptions: ['-u'], // get print results in real-time
               scriptPath: './public/pyscripts',
               args: [fnovo]
