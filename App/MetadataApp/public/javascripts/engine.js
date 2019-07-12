@@ -49,6 +49,16 @@ $(()=>{
             ajaxDeleteFicheiro($(this))
     })
 
+    /* Para fazer highligth da tabela */
+    $('.highlightable').click(function(e){
+        var toChange = $(this)[0].href.split('#')[1];
+        alert('A ser redirecionado para: ' + $(this)[0].href.split('#')[1])
+        $('#'+toChange).css("background-color", "#FF8C00");
+        window.setTimeout(function() {
+            $('#'+toChange).css("background-color", "#FFFFFF");
+        }, 5* 1000);
+    });
+
     function ajaxDeleteFicheiro(element) {
         var url = element.attr('href')
         $.ajax({

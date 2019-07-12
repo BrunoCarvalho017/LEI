@@ -20,11 +20,7 @@ block content
           .w3-half
             .label Sociolinguistic Variables
             each sv in svs
-              input(type='checkbox' name='featured_svs[]' value=sv checked)
-              | #{sv} 
-            br
-            input#sv_field.w3-input.w3-border(type='text' name="sv_field" placeholder='Add sociolinguistic variable')
-            button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption()') Add
+              input(type='hidden' name='featured_svs[]' value=sv)
           .w3-half
             .label Keywords and Expressions
             each kw in kws

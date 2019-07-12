@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  br
+  br
+  br
+  .w3-container.w3-orange.w3-center
+        h1.w3-middle Fields Transformation
+        br
+        br
+        .w3-third
+            h2 CSV fields
+        .w3-third
+            p
+        .w3-third
+            h2 JSON fields
+    
+
+        form.w3-container(method='POST' action="/users/submitMeta" enctype='multipart/form-data')
+            .w3-container
+                .w3-third
+                    .w3-panel.w3-padding
+                    label.w3-text
+                        b= Titulo
+                    input.w3-input(type='text' name="title")
+                .w3-third
+                    br
+                    br
+                    br
+                    i.fas.fa-exchange-alt
+                .w3-third.w3-large
+                    br
+                    br
+                    select.w3-select(name='lang').w3-large
+                        option(value='' disabled='' selected='') Choose your option
+                        each f in finalFields
+                            option(value=f) #{f}
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+            br
+        input.w3-btn.w3-border.w3-wide.w3-round.w3-white(type="submit", value='Submit')
+        br
+        br
+        br
+        
+

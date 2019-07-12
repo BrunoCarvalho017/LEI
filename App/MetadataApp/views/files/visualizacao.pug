@@ -124,7 +124,7 @@ block content
                                             | #{false}
                                     td
                                         if c.hasReplies 
-                                            a(href="#"+c.id) #{c.id}
+                                            a(href="#"+c.id).highlightable #{c.id}
                                         else 
                                             | #{indeed}
             hr
@@ -133,30 +133,31 @@ block content
                 |   Replies
             each tes in ficheiro.commentThread
                 if tes.hasReplies
-                    h4(id=tes.id) To Comment_id: #{tes.id} 
-                    table.w3-section(id="repliesTable").w3-table.w3-table-all
-                        tr
-                            tr.w3-container.w3-border-top
-                                th User
-                                th Response
-                                th Has Keywords
-                                th Comment ID
-                        each b in tes.replies
-                            if ficheiro.commentThread
-                                    tr.w3-container
-                                        td
-                                            if b.user
-                                                | #{b.user}
-                                            else
-                                                | N/A
-                                        td
-                                            if b.commentText
-                                                | #{b.commentText}
-                                            else 
-                                                | N/A
-                                        td
-                                            | #{b.hasKW}
-                                        td
-                                            | #{tes.id}
-                    br
+                    .w3-container(id=tes.id).w3-round
+                        h4 To Comment_id: #{tes.id} 
+                        table.w3-section(id="repliesTable").w3-table.w3-table-all
+                            tr
+                                tr.w3-container.w3-border-top
+                                    th User
+                                    th Response
+                                    th Has Keywords
+                                    th Comment ID
+                            each b in tes.replies
+                                if ficheiro.commentThread
+                                        tr.w3-container
+                                            td
+                                                if b.user
+                                                    | #{b.user}
+                                                else
+                                                    | N/A
+                                            td
+                                                if b.commentText
+                                                    | #{b.commentText}
+                                                else 
+                                                    | N/A
+                                            td
+                                                | #{b.hasKW}
+                                            td
+                                                | #{tes.id}
+                        br
             
