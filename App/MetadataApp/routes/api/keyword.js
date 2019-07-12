@@ -15,6 +15,12 @@ router.get('/:id', function(req, res) {
         .catch(erro => res.status(500).send("ERROR na listagem" + erro))
 });
 
+router.post('/:id', function(req, res) {
+    KeywordsController.insereVar(req.params,req.body)
+        .then(dados => res.jsonp(dados))
+        .catch(erro => res.status(500).send("ERROR na listagem" + erro))
+});
+
 router.get('/:id/:id2/pt', function(req, res) {
     KeywordsController.getKeywordByIdPt(req.params.id)
         .then(dados => res.jsonp(dados))

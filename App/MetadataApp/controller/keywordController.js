@@ -15,6 +15,20 @@ Keywordcontroller.listaVars = (tipo) => {
     .exec()
 }
 
+Keywordcontroller.insereVar = (params,body) => {
+
+    const pt = "sociolinguistic_variables.pt."+body.socio
+    const en = "sociolinguistic_variables.en."+body.socio
+
+    var queryVarPt = {}
+    var queryVarEn = {}
+    queryVarPt[pt]= []
+    queryVarEn[en]= []
+    return Keywords
+    .updateOne({"type_prejudice":params.id},{$set:queryVarPt})
+
+}
+
 Keywordcontroller.getKeywordByIdPt = (id) => {
     return Keywords
         .find({ "type_prejudice" : id },{"sociolinguistic_variables.pt":1})
