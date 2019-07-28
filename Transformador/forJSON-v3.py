@@ -21,7 +21,7 @@ def toJson(file):
 
 	#percorrer todas as rows e extrair a informação
 	idf = open(file)
-	spamreader= csv.reader(idf,dialect='excel-tab') 
+	spamreader= csv.reader(idf,dialect='excel-tab')
 	i = 0
 
 	for row in spamreader:
