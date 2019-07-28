@@ -59,6 +59,11 @@ $(()=>{
         }, 5* 1000);
     });
 
+    $('.checkboxes').click(function(e){
+        var toChange=$('#prejudiceCheckbox').attr("name");
+        alert('Name do que fui buscar x: ' + toChange )
+    });
+
     function ajaxDeleteFicheiro(element) {
         var url = element.attr('href')
         $.ajax({
