@@ -64,7 +64,7 @@ router.post('/submitMeta', (req,res) => {
   
     var obj
     var file = ''+metadata['fich']
-    console.log('Ficheiro: '  + file)
+    //console.log('Ficheiro: '  + file)
     fs.readFile(file,function(erro,data){
       if(!erro){
         obj = JSON.parse(data);
@@ -131,7 +131,7 @@ router.post('/compile', (req, res) => {
 
                     var validate = ajv.compile(schema);
                     var valid = validate(submited_file);
-                    console.log(valid)
+                    //console.log(valid)
 
                     if(valid){
                       let options = {
@@ -145,11 +145,11 @@ router.post('/compile', (req, res) => {
                       PythonShell.run('analisador.py', options, function (err, results) {
                         if (!err) {
                           // results is an array consisting of messages collected during execution
-                          console.log('results: %j', results);
+                          //console.log('results: %j', results);
 
                           let rawdata = fs.readFileSync('metadata.json');  
                           metadata = JSON.parse(rawdata);  
-                          console.log(metadata)
+                          //console.log(metadata)
                           res.render('metadataSubmission',{prints: results, kws: metadata.kws, svs: metadata.svs, ficheiro:fnovo, csv:metadata.csv});
                         }
                         else{

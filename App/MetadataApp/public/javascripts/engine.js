@@ -49,6 +49,21 @@ $(()=>{
             ajaxDeleteFicheiro($(this))
     })
 
+    /* Para fazer highligth da tabela */
+    $('.highlightable').click(function(e){
+        var toChange = $(this)[0].href.split('#')[1];
+        alert('A ser redirecionado para: ' + $(this)[0].href.split('#')[1])
+        $('#'+toChange).css("background-color", "#FF8C00");
+        window.setTimeout(function() {
+            $('#'+toChange).css("background-color", "#FFFFFF");
+        }, 5* 1000);
+    });
+
+    $('.checkboxes').click(function(e){
+        var toChange=$('#prejudiceCheckbox').attr("name");
+        alert('Name do que fui buscar x: ' + toChange )
+    });
+
     function ajaxDeleteFicheiro(element) {
         var url = element.attr('href')
         $.ajax({

@@ -10,7 +10,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
     axios.get('http://localhost:3001/api/ficheiros/')
          .then(ficheiros => {
-             console.log(ficheiros.data)
+             //console.log(ficheiros.data)
              res.render('files/files', {ficheiros: ficheiros.data})
          })
          .catch(err => {
@@ -22,7 +22,7 @@ router.get('/', function(req, res) {
 router.get('/:id', (req,res) => {
     axios.get('http://localhost:3001/api/ficheiros/' + req.params.id)
         .then(ficheiro => {
-            console.log(ficheiro.data)
+            //console.log(ficheiro.data)
             res.render('files/visualizacao', {ficheiro: ficheiro.data})
         })
 });
