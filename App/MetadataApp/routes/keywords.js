@@ -13,6 +13,16 @@ router.get('/', function(req, res) {
         })
 });
 
+router.post('/', function(req, res) {
+    axios.post('http://localhost:3001/api/keywords/', req.body)
+    .then(()=> res.redirect('http://localhost:3001/keywords/'))
+    .catch(err => {
+        console.log('Erro na inserção [Prejudice]')
+        res.render('error', {error:err})
+    })
+});   
+
+
 router.get('/:id', function(req, res) {
     axios.get('http://localhost:3001/api/keywords/'+req.params.id)
          .then(Keywords => {
@@ -31,6 +41,7 @@ router.post('/:id', function(req, res) {
         res.render('error', {error:err})
     })
 });   
+
 
 
 

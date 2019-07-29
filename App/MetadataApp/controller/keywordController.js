@@ -21,11 +21,31 @@ Keywordcontroller.insereVar = (params,body) => {
     const en = "sociolinguistic_variables.en."+body.socio
 
     var queryVarPt = {}
-    var queryVarEn = {}
     queryVarPt[pt]= []
-    queryVarEn[en]= []
+    queryVarPt[en]= []
+    console.log(queryVarPt)
     return Keywords
-    .updateOne({"type_prejudice":params.id},{$set:queryVarPt})
+    .updateOne({"type_prejudice":params.id},{$set:queryVarPt })
+
+}
+
+Keywordcontroller.inserePrejudice = (params,body) => {
+    console.log(body.var)
+    var queryVarPt = {}
+    var queryParamPT = {}
+    var aux = {}
+    aux[body.var] = []
+    queryParamPT["pt"]=  aux
+    queryParamPT["en"]=  aux
+    // queryParamEn["en"]=  aux
+    // queryVarPt["sociolinguistic_variables"] = queryParamPT
+    // queryVarPt["type_prejudice"] = body.socio
+    
+
+    console.log(queryVarPt)
+    return Keywords.create({  "type_prejudice" : body.socio , "sociolinguistic_variables" : queryParamPT})
+
+
 
 }
 

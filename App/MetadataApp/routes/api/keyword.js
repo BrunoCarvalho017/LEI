@@ -9,6 +9,12 @@ router.get('/', function(req, res) {
         .catch(erro => res.status(500).send("ERROR na listagem" + erro))
 });
 
+router.post('/', function(req, res) {
+    KeywordsController.inserePrejudice(req.params,req.body)
+        .then(dados => res.jsonp(dados))
+        .catch(erro => res.status(500).send("ERROR na listagem" + erro))
+});
+
 router.get('/:id', function(req, res) {
     KeywordsController.listaVars(req.params.id)
         .then(dados => res.jsonp(dados))
