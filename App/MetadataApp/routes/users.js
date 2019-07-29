@@ -217,5 +217,72 @@ router.get('/download/csv/:id', (req,res)=>{
   });
 });
 
+router.get('/toJson', function(req,res){
+  res.render('transformador');
+});
+
+router.post('/toJSONcompile', (req, res) => {
+  var form = new formidable.IncomingForm()
+  form.parse(req, (erro,fields,files)=>{
+      var fenviado = files.ficheiro.path
+
+      var fnovo = './public/uploaded/'+files.ficheiro.name
+      console.log("POST [fnovo]:"+fnovo)
+     
+      fs.rename(fenviado, fnovo, erro => {
+          if(!erro){
+                fs.readFile(fnovo,function(err,rawdata) {
+                  if(!err) {
+                      let options = {
+                        mode: 'text',
+                        pythonPath: '/usr/local/bin/python3',
+                        pythonOptions: ['-u'], // get print results in real-time
+                        scriptPath: './public/pyscripts',
+                        args: [fnovo]
+                      };
+                      
+                      PythonShell.run('forJSON-v3.py', options, function (err, results) {
+                        if (!err) {
+                          var name = results[0];
+                          console.log(name)
+                          const filePath = path.join(__dirname, "..", "public", "exports", name + '.json')
+                          const filePath2 = path.join(fnovo) 
+                          res.download(filePath, function(err) {
+                            if (err) {
+                              
+                            } else {
+                              fs.unlink(filePath, function (err) {
+                                if (err) throw err;
+                                console.log('File deleted!');
+                              });
+                              fs.unlink(filePath2, function (err) {
+                                if (err) throw err;
+                                console.log('File deleted!');
+                              });
+                            }
+                          });
+                        }
+                        else{
+                          console.log("Erro no conversor")
+                          res.render('error',{error: err});
+                        }
+                      });
+                  }
+                  else{
+                    // throw err
+                    console.log("Erro na leitura do ficheiro")
+                    res.render('error',{error: err});
+                  }
+                });
+              }
+          else{
+              console.log('Ocorreu erro no rename')
+              //res.render('error',{error: "Erro no rename!!!"});
+              res.end()
+          }
+      })
+  })  
+})
+
 
 module.exports = router;

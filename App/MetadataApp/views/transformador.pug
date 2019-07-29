@@ -10,7 +10,7 @@ block content
         br
         h4 Since this web application only accepts JSON format files, you can submit here a CSV type file.
         h4 We convert the CSV format files to JSON format files.
-        form(method='POST' action="/convert/file" enctype='multipart/form-data')
+        form(method='POST' action="/users/toJSONcompile" enctype='multipart/form-data')
             input.w3-input.w3-border.w3-light-grey(type="file", name='ficheiro' required)
             input(type="hidden" name="tipo" value=tipo)
             br

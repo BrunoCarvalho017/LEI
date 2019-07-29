@@ -26,12 +26,9 @@ block content
           .w3-half
             .label Keywords and Expressions
             each kw in kws
-              input(type='checkbox' name='featured_kws[]' value=kw checked).checkboxes
-              | #{kw}
+              input(type='text' name='featured_kws[]' value=kw checked)
               br 
             br
-            input#kw_field.w3-input.w3-border(type='text' name="kw_field" placeholder='Add keyword or expression')
-            button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='button' onclick='addOption2()') Add
         hr
 
         .w3-panel.w3-padding

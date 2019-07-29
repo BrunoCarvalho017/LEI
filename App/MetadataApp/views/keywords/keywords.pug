@@ -30,6 +30,6 @@ block content
             br
             .w3-container
                 form.w3-container(method='POST' action="/keywords/")
-                    input.w3-input.w3-border( name="socio" type="text" placeholder="Add Type of Prejudice" )
-                    input.w3-input.w3-border( name="var" type="text" placeholder="Add Sociolinguistic variable" )
+                    input.w3-input.w3-border( name="socio" type="text" placeholder="Add Type of Prejudice" required)
+                    input.w3-input.w3-border( name="var" type="text" placeholder="Add Sociolinguistic variable" required)
                     button.w3-btn.w3-border.w3-wide.w3-round.w3-white(type='Submit' value='Submit') Add
