@@ -22,7 +22,7 @@
     "morgan": "~1.9.0",
     "optimizer": "^1.8.4",
     "path": "^0.12.7",
-    "pug": "^2.0.3",
+    "pug": "^3.0.1",
     "python-shell": "^1.0.7",
     "serve-favicon": "^2.5.0",
     "source-map": "^0.7.3"
